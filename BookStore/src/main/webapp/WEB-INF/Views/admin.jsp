@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-{user}
+${user}
 <a href="<c:url value="/logout" />">Logout</a>
 </body>
 </html>

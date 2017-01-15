@@ -61,6 +61,7 @@
         </a>
       </div>
     </div>
+    <a href="<c:url value="/logout" />">Logout</a>
     <br>
     <%@ include file="footer.jsp" %>
 </body>

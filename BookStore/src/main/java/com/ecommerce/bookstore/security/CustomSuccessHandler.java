@@ -33,10 +33,7 @@ public class CustomSuccessHandler extends SimpleUrlAuthenticationSuccessHandler{
 	        redirectStrategy.sendRedirect(request, response, targetUrl);
 	    }
 	 
-	    /*
-	     * This method extracts the roles of currently logged-in users/DBA/Admin and returns
-	     * appropriate URL according to his/her role.
-	     */
+	    
 	    protected String determineTargetUrl(Authentication authentication) {
 	        String url = "";
 	 
@@ -92,3 +89,4 @@ public class CustomSuccessHandler extends SimpleUrlAuthenticationSuccessHandler{
 	 
 
 }
+

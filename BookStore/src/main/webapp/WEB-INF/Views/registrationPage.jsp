@@ -11,20 +11,21 @@
 </head>
 <body>
 
-	<form:form action='/' method='POST' class="form-horizontal">
+	<form:form action='register' method='POST' class="form-horizontal" commandName="addUser">
 		
-		<div class="input-group input-sm">
-                                <label class="input-group-addon" for="Name"></label>
-                                <input type="text" class="form-control" id="Name" name="Name" placeholder="Enter Name" required>
-        </div>
-        <div class="input-group input-sm">
-                               	<label class="input-group-addon" for="Contact"><i class="fa fa-lock"></i></label> 
-                                <input type="tel" class="form-control" id="contact" name="contact" placeholder="contact number" required>
-        </div>
+		
+                                <input type="text" class="form-control" id="username" name="username" placeholder="Enter Username" required>
+                                
+                                <input type="password" class="form-control" id="password" name="password" placeholder="Enter Password" required>
+                                
+                                <input type="email" class="form-control" id="email" name="email" placeholder="Enter E-mail" required>
+
+                                <input type="tel" class="form-control" id="mobile" name="mobile" placeholder="contact number" required>
+                                
+                                <input type="text" class="form-control" id="address" name="address" placeholder="Enter Address" required>
         
-        <div class="form-actions">
                                 <input type="submit" class="btn btn-block btn-primary btn-default" value="Register">
-        </div>
+       
         
 	</form:form>
 </body>
