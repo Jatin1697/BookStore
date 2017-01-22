@@ -1,5 +1,7 @@
 package com.ecommerce.bookstore.DAOImpl;
 
+import java.util.List;
+
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -22,6 +24,28 @@ public class UserDaoImpl implements UserDao{
 	public void addUser(Users u) {
 		// TODO Auto-generated method stub
 		sessionFactory.getCurrentSession().save(u);
+	}
+
+	public void updateUser(Users u) {
+		// TODO Auto-generated method stub
+		sessionFactory.getCurrentSession().update(u);
+	}
+
+	public boolean deleteUser(Users u) {
+		// TODO Auto-generated method stub
+		sessionFactory.getCurrentSession().delete(u);
+		return false;
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<Users> getAllUsers() {
+		// TODO Auto-generated method stub
+		return (List<Users>)sessionFactory.getCurrentSession().createQuery("from Users").list();
+	}
+
+	public Users getUser(int user_id) {
+		// TODO Auto-generated method stub
+		return sessionFactory.getCurrentSession().get(Users.class, user_id);
 	}
 
 }

@@ -1,5 +1,7 @@
 package com.ecommerce.bookstore.DAOImpl;
 
+import java.util.List;
+
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -9,7 +11,7 @@ import com.ecommerce.bookstore.DAO.ProductDao;
 import com.ecommerce.bookstore.model.Product;
 
 @Transactional
-@Repository
+@Repository(value="productDao")
 public class ProductDaoImpl implements ProductDao{
 
 	@Autowired
@@ -28,7 +30,18 @@ public class ProductDaoImpl implements ProductDao{
 	public boolean deleteProduct(Product p) {
 		// TODO Auto-generated method stub
 		sessionFactory.getCurrentSession().delete(p);
-		return true;
+		return false;
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<Product> getAllProducts() {
+		// TODO Auto-generated method stub
+		return (List<Product>)sessionFactory.getCurrentSession().createQuery("from Product").list();
+	}
+
+	public Product getProduct(int product_id) {
+		// TODO Auto-generated method stub
+		return sessionFactory.getCurrentSession().get(Product.class,product_id);
 	}
 
 	

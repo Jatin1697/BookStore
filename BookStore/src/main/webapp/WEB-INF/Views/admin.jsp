@@ -10,5 +10,6 @@
 <body>
 ${user}
 <a href="<c:url value="/logout" />">Logout</a>
+
 </body>
 </html>
