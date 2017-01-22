@@ -41,6 +41,7 @@ public class TestProduct {
 		pro.setPrice(249);
 		pro.setProduct_name("2 States");
 		pro.setQuantity(5);
+		pro.setAuthor("Chetan Bhagat");
 		
 		PDI.addProduct(pro);
 		List<Product> products = PDI.getAllProducts();

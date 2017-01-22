@@ -1,5 +1,7 @@
 package com.ecommerce.bookstore.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,8 +14,19 @@ import org.springframework.stereotype.Component;
 @Entity
 @Component
 @Table(name="Product")
-public class Product {
+public class Product implements Serializable {
 	
+	public String getAuthor() {
+		return author;
+	}
+	public void setAuthor(String author) {
+		this.author = author;
+	}
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1022255752926696743L;
+
 	@Id
 	@Column
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,6 +35,7 @@ public class Product {
 	@Column
 	String product_name;
 	String description;
+	String author;
 	int price;
 	int quantity;
 	/**
