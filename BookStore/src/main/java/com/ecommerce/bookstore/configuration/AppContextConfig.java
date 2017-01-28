@@ -15,7 +15,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
 @Configuration
-//@EnableWebMvc
+@EnableWebMvc
 @ComponentScan(basePackages="com.ecommerce.bookstore")
 public class AppContextConfig extends WebMvcConfigurerAdapter {
 
@@ -39,7 +39,7 @@ public class AppContextConfig extends WebMvcConfigurerAdapter {
         mailSender.setHost("smtp.gmail.com");
         mailSender.setPort(587);
         mailSender.setUsername("jatin.sabherwal16497@gmail.com");
-        mailSender.setPassword("dtuenvironmental");
+        mailSender.setPassword("csemaitipu2");
          
         Properties javaMailProperties = new Properties();
     

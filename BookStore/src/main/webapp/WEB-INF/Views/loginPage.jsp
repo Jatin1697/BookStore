@@ -13,14 +13,11 @@
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
-    <link rel='stylesheet' type='text/css' href="static/css/loginStyle.css">
+    <script src="static/js/index.js"></script>
+    <link rel='stylesheet' type='text/css' href="static/css/style.css">
         
 </head>
 <body>
-	
-	<div class="wrap">
-	<p style="font-size:200%; font-style:oblique;">BOOKSTORE</p>
-		<div class="col-md-8">
 			<form action="login" method="POST">
 				<c:if test="${param.error != null}">
 					<div class="alert alert-danger">
@@ -32,21 +29,21 @@
 						<p>You have been logged out successfully.</p>
 					</div>
 				</c:if>
-			<div> 	
-				<span>Username</span>
-				<input type="text" id="username" name="username" placeholder="Enter Username" required> 
-			</div>
-			<div> 
-				<span >Password</span>
-				<input type="password" id="password" name="password" placeholder="Enter Password" required>
-			</div>				
-			<input type="hidden" name="${_csrf.parameterName}"  value="${_csrf.token}" />
-			  <div class="form-actions">
-				<input type="submit" class="btn btn-block btn-primary btn-default" value="Login"><br />
-			</div>	
+				<div id='login'>
+	  			<h1>SIGN IN<span class='orangestop'>.</span></h1>
+	  			<span class='input'>
+	    			<span class='icon username-icon fontawesome-user'></span>
+	    			<input type='text' class='username' id='username' name='username' placeholder='Username'></span>
+	  			<span class='input'>
+	    			<span class='password-icon-style icon password-icon fontawesome-lock'></span>
+	   				<input type='password' class='password' id='password' name='password' placeholder='Password'>
+	  			</span>
+	  			<div class='forgot'><a href='<c:url value='/forgot_details'></c:url>'>Forgot Details?</a></div>
+	 			<div class='divider'></div>
+	  			<button>LOG IN</button>
+	  			<p>Not Registered <a href='<c:url value='/registration'></c:url>'>REGISTER</a> Here</p>
+				</div>			
+				<input type="hidden" name="${_csrf.parameterName}"  value="${_csrf.token}" />	
 			</form>
-		</div>
-	</div>
-	Not Registered <a href='<c:url value='/registration'></c:url>'>REGISTER</a> Here
 </body>
 </html>
