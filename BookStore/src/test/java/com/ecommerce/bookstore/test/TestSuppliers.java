@@ -37,14 +37,14 @@ public class TestSuppliers {
 		@Test
 		public void testMethod() {
 			
-			supplier.setSupplier_id(7);
+			supplier.setSupplier_id(1);
 			supplier.setSupplier_name("Pearson Publication");
 			supplier.setSupplier_email("pearson@gmail.com");
 			supplier.setSupplier_mob_no("8877665544");
 			supplier.setSupplier_address("Delhi");
 			
 			SDI.addSupplier(supplier);
-			Supplier s = SDI.getSupplier(7);
+			Supplier s = SDI.getSupplier(1);
 			assertEquals("Pearson Publication", s.getSupplier_name());
 			System.out.println("Add Supplier Method Checked");
 			
@@ -54,7 +54,7 @@ public class TestSuppliers {
 			
 			supplier.setSupplier_mob_no("9988776655");
 			SDI.updateSupplier(supplier);
-			Supplier s1 = SDI.getSupplier(7);
+			Supplier s1 = SDI.getSupplier(1);
 			assertEquals("9988776655", s1.getSupplier_mob_no());
 			System.out.println("Update Supplier Method Checked");
 			

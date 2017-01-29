@@ -1,6 +1,7 @@
 package com.ecommerce.bookstore.model;
 
 import java.io.Serializable;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,6 +9,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -45,6 +48,23 @@ public class Product implements Serializable {
 	@JoinColumn(name = "category_id")
 	private Category category;
 	
+	public Category getCategory() {
+		return category;
+	}
+	public void setCategory(Category category) {
+		this.category = category;
+	}
+	
+	@ManyToMany
+	@JoinTable(name="product_supplier" , joinColumns={@JoinColumn(name = "product_id")},inverseJoinColumns={@JoinColumn(name="supplier_id")})
+	private Set<Supplier> supplier;
+	
+	public Set<Supplier> getSupplier() {
+		return supplier;
+	}
+	public void setSupplier(Set<Supplier> supplier) {
+		this.supplier = supplier;
+	}
 	/**
 	 * @return the product_id
 	 */

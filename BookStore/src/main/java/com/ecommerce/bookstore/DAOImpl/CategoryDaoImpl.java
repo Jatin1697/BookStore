@@ -11,7 +11,7 @@ import com.ecommerce.bookstore.DAO.CategoryDao;
 import com.ecommerce.bookstore.model.Category;
 
 @Transactional
-@Repository(value = "catrgoryDao")
+@Repository(value = "categoryDao")
 public class CategoryDaoImpl implements CategoryDao{
 
 	@Autowired

@@ -9,8 +9,12 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+import com.ecommerce.bookstore.DAO.CategoryDao;
 import com.ecommerce.bookstore.DAO.ProductDao;
+import com.ecommerce.bookstore.DAO.SupplierDao;
+import com.ecommerce.bookstore.model.Category;
 import com.ecommerce.bookstore.model.Product;
+import com.ecommerce.bookstore.model.Supplier;
 
 public class TestProduct {
 	
@@ -19,6 +23,18 @@ public class TestProduct {
 	
 	@Autowired
 	ProductDao PDI;
+	
+	@Autowired
+	Category category;
+	
+	@Autowired
+	CategoryDao categoryDao;
+	
+	@Autowired
+	SupplierDao supplierDao;
+	
+	@Autowired
+	Supplier supplier;
 	
 	AnnotationConfigApplicationContext context;
 	
@@ -30,6 +46,13 @@ public class TestProduct {
 		
 		pro = (Product) context.getBean("product");
 		PDI = (ProductDao) context.getBean("productDao");
+		
+		category = (Category) context.getBean("category");
+		categoryDao = (CategoryDao) context.getBean("categoryDao");
+		
+		supplier = (Supplier) context.getBean("supplier");
+		supplierDao = (SupplierDao) context.getBean("supplierDao");
+				
 		System.out.println("got bean");
 	}
 	
@@ -42,6 +65,7 @@ public class TestProduct {
 		pro.setProduct_name("2 States");
 		pro.setQuantity(5);
 		pro.setAuthor("Chetan Bhagat");
+		pro.setCategory(categoryDao.getCategory(1));
 		
 		PDI.addProduct(pro);
 		List<Product> products = PDI.getAllProducts();

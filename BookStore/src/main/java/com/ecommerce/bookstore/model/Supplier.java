@@ -1,12 +1,15 @@
 package com.ecommerce.bookstore.model;
 
 import java.io.Serializable;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
@@ -31,6 +34,16 @@ public class Supplier implements Serializable {
 	String supplier_mob_no;
 	String supplier_address;
 	String supplier_email;
+	
+	@ManyToMany(mappedBy = "supplier" , cascade = CascadeType.ALL)
+	private Set<Product> product;
+	
+	public Set<Product> getProduct() {
+		return product;
+	}
+	public void setProduct(Set<Product> product) {
+		this.product = product;
+	}
 	/**
 	 * @return the supplier_id
 	 */
