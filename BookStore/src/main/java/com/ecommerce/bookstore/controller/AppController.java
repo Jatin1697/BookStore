@@ -1,5 +1,7 @@
 package com.ecommerce.bookstore.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -11,10 +13,13 @@ import org.springframework.security.web.authentication.logout.SecurityContextLog
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.ecommerce.bookstore.DAO.ProductDao;
 import com.ecommerce.bookstore.DAO.UserDao;
+import com.ecommerce.bookstore.model.Product;
 import com.ecommerce.bookstore.model.Users;
 import com.ecommerce.bookstore.service.MailService;
 
@@ -28,6 +33,9 @@ public class AppController {
 	
 	@Autowired
 	MailService mailService;
+	
+	@Autowired
+	ProductDao productDao;
 	
 	@RequestMapping(value={"/","/home"} , method = RequestMethod.GET)
 	public String landingPage(ModelMap model){
@@ -51,6 +59,9 @@ public class AppController {
 	@RequestMapping(value = "/admin", method = RequestMethod.GET)
     public String adminPage(ModelMap model) {
         model.addAttribute("user", getPrincipal());
+        List<Product> products = productDao.getAllProducts();
+        model.addAttribute("products", products);
+        System.out.println(getPrincipal());
         return "admin";
     }
      
@@ -82,6 +93,21 @@ public class AppController {
             new SecurityContextLogoutHandler().logout(request, response, auth);
         }
         return "redirect:/login?logout";
+    }
+    
+    @RequestMapping(value="/edit-product-{product_id}", method = RequestMethod.GET)
+    public String editProduct (ModelMap model)
+    {
+    	
+    	return "admin";
+    }
+    
+    @RequestMapping(value="/delete-product-{product_id}", method = RequestMethod.GET)
+    public String deleteProduct (@PathVariable int product_id)
+    {
+    	Product productId = productDao.getProduct(product_id);
+		productDao.deleteProduct(productId );
+    	return "redirect:/admin";
     }
     
     private String getPrincipal(){

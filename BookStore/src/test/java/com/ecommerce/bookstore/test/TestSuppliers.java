@@ -1,4 +1,4 @@
-package com.ecommerce.bookstore.test;
+/*package com.ecommerce.bookstore.test;
 
 import static org.junit.Assert.*;
 
@@ -64,3 +64,4 @@ public class TestSuppliers {
 			System.out.println("Delete Supplier Method Checked");
 		}
 }
+*/
