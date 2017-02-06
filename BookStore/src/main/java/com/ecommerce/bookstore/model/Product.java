@@ -5,6 +5,7 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -55,7 +56,7 @@ public class Product implements Serializable {
 		this.category = category;
 	}
 	
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name="product_supplier" , joinColumns={@JoinColumn(name = "product_id")},inverseJoinColumns={@JoinColumn(name="supplier_id")})
 	private Set<Supplier> supplier;
 	

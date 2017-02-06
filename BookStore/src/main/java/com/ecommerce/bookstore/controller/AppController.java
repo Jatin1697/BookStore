@@ -1,7 +1,6 @@
 package com.ecommerce.bookstore.controller;
 
 import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -17,9 +16,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.ecommerce.bookstore.DAO.CategoryDao;
 import com.ecommerce.bookstore.DAO.ProductDao;
+import com.ecommerce.bookstore.DAO.SupplierDao;
 import com.ecommerce.bookstore.DAO.UserDao;
+import com.ecommerce.bookstore.model.Category;
 import com.ecommerce.bookstore.model.Product;
+import com.ecommerce.bookstore.model.Supplier;
 import com.ecommerce.bookstore.model.Users;
 import com.ecommerce.bookstore.service.MailService;
 
@@ -36,6 +39,12 @@ public class AppController {
 	
 	@Autowired
 	ProductDao productDao;
+	
+	@Autowired
+	CategoryDao categoryDao;
+	
+	@Autowired
+	SupplierDao supplierDao;
 	
 	@RequestMapping(value={"/","/home"} , method = RequestMethod.GET)
 	public String landingPage(ModelMap model){
@@ -59,12 +68,9 @@ public class AppController {
 	@RequestMapping(value = "/admin", method = RequestMethod.GET)
     public String adminPage(ModelMap model) {
         model.addAttribute("user", getPrincipal());
-        List<Product> products = productDao.getAllProducts();
-        model.addAttribute("products", products);
-        System.out.println(getPrincipal());
         return "admin";
     }
-     
+	
     @RequestMapping(value = "/db", method = RequestMethod.GET)
     public String dbaPage(ModelMap model) {
         model.addAttribute("user", getPrincipal());
@@ -95,11 +101,36 @@ public class AppController {
         return "redirect:/login?logout";
     }
     
+    //PRODUCT PAGE CONTROLLER
+    @RequestMapping(value = "/handleProduct", method = RequestMethod.GET)
+    public String productPage(ModelMap model) {
+        model.addAttribute("user", getPrincipal());
+    	model.addAttribute("new_product",new Product());
+    	
+    	List<Category> category = categoryDao.getAllCategory();
+    	model.addAttribute("category", category);
+    	
+    	List<Supplier> suppliers = supplierDao.getAllSuppliers();
+    	model.addAttribute("suppliers", suppliers);
+    	
+        List<Product> products = productDao.getAllProducts();
+        model.addAttribute("products", products);
+        
+        return "product";
+    }
+    
+    @RequestMapping(value="/newProduct", method = RequestMethod.POST)
+    public String addNewProduct(@ModelAttribute("new_product") Product product)
+    {
+    	productDao.addProduct(product);
+    	return "redirect:/handleProduct";
+    }
+    
     @RequestMapping(value="/edit-product-{product_id}", method = RequestMethod.GET)
     public String editProduct (ModelMap model)
     {
     	
-    	return "admin";
+    	return "product";
     }
     
     @RequestMapping(value="/delete-product-{product_id}", method = RequestMethod.GET)
@@ -107,7 +138,7 @@ public class AppController {
     {
     	Product productId = productDao.getProduct(product_id);
 		productDao.deleteProduct(productId );
-    	return "redirect:/admin";
+    	return "redirect:/handleProduct";
     }
     
     private String getPrincipal(){

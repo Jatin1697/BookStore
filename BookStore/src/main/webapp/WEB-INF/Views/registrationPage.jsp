@@ -5,9 +5,7 @@
 <html>
 <head>
     <title>RegistationPage</title>
-    <link rel='stylesheet' type='text/css' href='static/css/bootstrap.min.css'>
-    <link rel='stylesheet' type='text/css' href='static/css/font-awesome.min.css'>
-    
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> 
 </head>
 <body>
 

@@ -1,41 +1,46 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" isELIgnored="false"
-    pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Admin</title>
-</head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+.left-navbar {
+	margin:0
+}
+
+.icon-bar {
+	padding :10px;
+    width: 150px;
+    text-align: center;
+    background-color: black;
+}
+
+.icon-bar a:link,a:visited {
+	padding-bottom : 70px;
+	padding-top : 70px;
+    display: block;
+    transition: all 0.3s ease;
+    color: white;
+	background-color : #f44336;
+    font-size: 20px;
+	text-decoration : none;
+}
+
+.icon-bar a:hover,a:active {
+    background-color: red;
+	text-decoration : none;
+}
+
+.active {
+    background-color: #4CAF50 !important;
+}
+</style>
 <body>
-${user}
-<br>
-<table border=1>
-	<thead>
-	<tr style="text-align: center">
-		<th>NAME</th>
-		<th>AUTHOR</th>
-		<th>DESCRIPTION</th>
-		<th>PRICE</th>
-		<th>QUANTITY</th>
-		<th width="100"></th>
-		<th width="100"></th>
-		</tr>
-	</thead>
-	<tbody>
-		<c:forEach items="${products }" var="product">
-			<tr style="text-align: center">
-			<td><c:out value="${product.product_name }"></c:out></td>
-			<td><c:out value="${product.author }"></c:out></td>
-			<td><c:out value="${product.description }"></c:out></td>
-			<td><c:out value="${product.price }"></c:out></td>
-			<td><c:out value="${product.quantity }"></c:out></td>
-			<td><a href='<c:url value='/edit-product-${product.product_id }'></c:url>'>Edit</a></td>
-			<td><a href='<c:url value='/delete-product-${product.product_id }'></c:url>'>Delete</a></td>
-			</tr>
-		</c:forEach>
-	</tbody>
-</table>
-<br>
-<a href="<c:url value="/logout" />">Logout</a>
+	<div class ="left-navbar">
+		<div class="icon-bar"> 
+		  <a href="#">USERS</a> 
+		  <a href='<c:url value='/handleProduct'></c:url>'>PRODUCTS</a> 
+		  <a href="#">SUPPLIERS</a> 
+		</div>
+	</div> 
 </body>
-</html>
+</html> 
