@@ -12,16 +12,16 @@
         </ol>
         <div class="carousel-inner" role="listbox">
           <div class="item active">
-            <img src="C:\Users\Jatin\Desktop\BS_Pics\ShowcaseV1.png" alt="offer1" class="img-responsive" style="width:100%">
+            <img src="C:\Users\Jatin\Desktop\BS_Pics\ShowcaseV3.jpg" alt="offer1" class="img-responsive" style="width:100%">
           </div>
           <div class="item">
-            <img src="C:\Users\Jatin\Desktop\BS_Pics\ShowcaseV2.jpg" alt="offer2" class="img-responsive" style="width:100%">
+            <img src="C:\Users\Jatin\Desktop\BS_Pics\ShowcaseV4.png" alt="offer2" class="img-responsive" style="width:100%">
           </div>
           <div class="item">
-            <img src="C:\Users\Jatin\Desktop\BS_Pics\ShowcaseV3.jpg" alt="offer3" class="img-responsive" style="width:100%">
+            <img src="C:\Users\Jatin\Desktop\BS_Pics\ShowcaseV5.jpg" alt="offer3" class="img-responsive" style="width:100%">
           </div>
           <div class="item">
-            <img src="C:\Users\Jatin\Desktop\BS_Pics\ShowcaseV4.png" alt="offer4" class="img-responsive" style="width:100%">
+            <img src="C:\Users\Jatin\Desktop\BS_Pics\ShowcaseV6.jpg" alt="offer4" class="img-responsive" style="width:100%">
           </div>
         </div>
         <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">

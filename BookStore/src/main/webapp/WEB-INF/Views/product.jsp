@@ -1,16 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" isELIgnored="false"
-    pageEncoding="ISO-8859-1"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-
 <html>
 <head>
-<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Admin/Product</title>
 </head>
 <body>
-${user}
+	<%@ include file = "adminNavbar.jsp" %>
 <br>
 <form:form action="newProduct" class="form-horizontal" commandName="new_product">
 	<b>PRODUCT NAME : </b><input type="text" id="product_name" name="product_name" placeholder="Enter Name" /><BR>
@@ -28,36 +22,41 @@ ${user}
 			<option value='${supplier}'>${supplier.supplier_name}</option>
 		</c:forEach>
 	</select><br>
-	<input type="submit" value="Add Product" class="btn btn-default"/>
+	<input type="submit" value="Add Product" class="btn btn-success"/>
 </form:form>
 <br>
-<table border=1>
-	<thead style="text-align: center">
-	<tr>
-		<th>NAME</th>
-		<th>AUTHOR</th>
-		<th>DESCRIPTION</th>
-		<th>PRICE</th>
-		<th>QUANTITY</th>
-		<th width="100">EDIT</th>
-		<th width="100">DELETE</th>
-	</tr>
-	</thead>
-	<tbody>
-		<c:forEach items="${products }" var="product">
-			<tr style="text-align: center">
-			<td><c:out value="${product.product_name }"></c:out></td>
-			<td><c:out value="${product.author }"></c:out></td>
-			<td><c:out value="${product.description }"></c:out></td>
-			<td><c:out value="${product.price }"></c:out></td>
-			<td><c:out value="${product.quantity }"></c:out></td>
-			<td><a href='<c:url value='/edit-product-${product.product_id }'></c:url>' class="btn btn-info">Edit</a></td>
-			<td><a href='<c:url value='/delete-product-${product.product_id }'></c:url>' class="btn btn-danger">Delete</a></td>
-			</tr>
-		</c:forEach>
-	</tbody>
-</table>
-<br>
-<a href="<c:url value="/logout" />">Logout</a>
+	<div class="panel panel-default">
+		<div class="panel-heading">
+		<h3 class="panel-title">PRODUCTS</h3>
+		</div>
+		<div class="panel-body ">
+			<table border=1 class="table table-striped table-hover table-responsive">
+				<thead>
+				<tr>
+					<th style="text-align: center">NAME</th>
+					<th style="text-align: center">AUTHOR</th>
+					<th style="text-align: center">DESCRIPTION</th>
+					<th style="text-align: center">PRICE</th>
+					<th style="text-align: center">QUANTITY</th>
+					<th style="text-align: center" width="100">EDIT</th>
+					<th style="text-align: center" width="100">DELETE</th>
+				</tr>
+				</thead>
+				<tbody>
+					<c:forEach items="${products }" var="product">
+						<tr >
+						<td><c:out value="${product.product_name }"></c:out></td>
+						<td><c:out value="${product.author }"></c:out></td>
+						<td><c:out value="${product.description }"></c:out></td>
+						<td><c:out value="${product.price }"></c:out></td>
+						<td><c:out value="${product.quantity }"></c:out></td>
+						<td style="text-align: center"><a href='<c:url value='/edit-product-${product.product_id }'></c:url>' class="btn btn-info">Edit</a></td>
+						<td style="text-align: center"><a href='<c:url value='/delete-product-${product.product_id }'></c:url>' class="btn btn-danger">Delete</a></td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+		</div>
+	</div>
 </body>
 </html>

@@ -68,6 +68,16 @@ public class AppController {
 	@RequestMapping(value = "/admin", method = RequestMethod.GET)
     public String adminPage(ModelMap model) {
         model.addAttribute("user", getPrincipal());
+        
+        List<Users> users = userDao.getActiveUsers();
+        model.addAttribute("users", users);
+        
+        model.addAttribute("edit", false);
+        model.addAttribute("new_category", new Category());
+        
+        List<Category> categories = categoryDao.getAllCategory();
+        model.addAttribute("categories", categories);
+        
         return "admin";
     }
 	
@@ -139,6 +149,62 @@ public class AppController {
     	Product productId = productDao.getProduct(product_id);
 		productDao.deleteProduct(productId );
     	return "redirect:/handleProduct";
+    }
+    
+    //CATEGORY CONTROLLER
+    @RequestMapping(value="/newCategory", method = RequestMethod.POST)
+    public String addCategory (@ModelAttribute("new_category") Category category)
+    {
+    	categoryDao.addCategory(category);
+    	return "redirect:/admin";
+    }
+    
+    @RequestMapping(value="/delete-category-{category_id}", method = RequestMethod.GET)
+    public String deleteCategory(@PathVariable int category_id)
+    {
+    	categoryDao.deleteCategory(categoryDao.getCategory(category_id));
+    	return "redirect:/admin";
+    }
+    
+    @RequestMapping(value="/edit-category-{category_id}" , method = RequestMethod.GET)
+    public String editCategory(@PathVariable int category_id , ModelMap model)
+    {
+    	Category category = categoryDao.getCategory(category_id);
+    	model.addAttribute("category_id", category_id);
+    	model.addAttribute("update_category", category);
+    	model.addAttribute("categoryName", category.getCategory_name());
+    	model.addAttribute("edit", true);
+    	
+    	List<Users> users = userDao.getActiveUsers();
+        model.addAttribute("users", users);
+        
+        List<Category> categories = categoryDao.getAllCategory();
+        model.addAttribute("categories", categories);
+    	
+    	return "admin";
+    }
+    
+    @RequestMapping(value="/edit-category-{category_id}" , method = RequestMethod.POST)
+    public String updateCategory(@ModelAttribute("update_category") Category category)
+    {
+    	categoryDao.updateCategory(category);
+    	return "redirect:/admin";
+    }
+    
+    //SUPPLIER CONTROLLER
+    @RequestMapping(value="/handleSupplier" , method = RequestMethod.GET)
+    public String supplierPage(ModelMap model)
+    {
+    	model.addAttribute("user", getPrincipal());
+    	model.addAttribute("suppliers", supplierDao.getAllSuppliers());
+    	return "supplier";
+    }
+    
+    @RequestMapping(value="/delete-supplier-{supplier_id}" , method = RequestMethod.GET)
+    public String deleteSupplier(@PathVariable int supplier_id)
+    {
+    	supplierDao.deleteSupplier(supplierDao.getSupplier(supplier_id));
+    	return "redirect:/handleSupplier";
     }
     
     private String getPrincipal(){

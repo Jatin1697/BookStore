@@ -11,4 +11,5 @@ public interface UserDao {
 	public boolean deleteUser (Users u);
 	public List<Users> getAllUsers();
 	public Users getUser(int user_id);
+	public List<Users> getActiveUsers();
 }
