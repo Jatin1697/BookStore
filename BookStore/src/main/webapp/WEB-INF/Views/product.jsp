@@ -25,7 +25,7 @@
 	<input type="submit" value="Add Product" class="btn btn-success"/>
 </form:form>
 <br>
-	<div class="panel panel-default">
+	<div class="panel panel-warning">
 		<div class="panel-heading">
 		<h3 class="panel-title">PRODUCTS</h3>
 		</div>

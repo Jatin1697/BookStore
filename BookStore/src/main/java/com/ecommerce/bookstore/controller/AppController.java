@@ -65,7 +65,7 @@ public class AppController {
     	userDao.addUser(user);
     	mailService.sendEmail(user);
     	
-		return "loginPage";
+		return "redirect:/login";
     	
     }
     
