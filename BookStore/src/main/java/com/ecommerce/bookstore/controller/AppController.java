@@ -1,6 +1,5 @@
 package com.ecommerce.bookstore.controller;
 
-import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -12,17 +11,10 @@ import org.springframework.security.web.authentication.logout.SecurityContextLog
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.ecommerce.bookstore.DAO.CategoryDao;
-import com.ecommerce.bookstore.DAO.ProductDao;
-import com.ecommerce.bookstore.DAO.SupplierDao;
 import com.ecommerce.bookstore.DAO.UserDao;
-import com.ecommerce.bookstore.model.Category;
-import com.ecommerce.bookstore.model.Product;
-import com.ecommerce.bookstore.model.Supplier;
 import com.ecommerce.bookstore.model.Users;
 import com.ecommerce.bookstore.service.MailService;
 
@@ -37,15 +29,6 @@ public class AppController {
 	@Autowired
 	MailService mailService;
 	
-	@Autowired
-	ProductDao productDao;
-	
-	@Autowired
-	CategoryDao categoryDao;
-	
-	@Autowired
-	SupplierDao supplierDao;
-	
 	@RequestMapping(value={"/","/home"} , method = RequestMethod.GET)
 	public String landingPage(ModelMap model){
 		model.addAttribute("user", getPrincipal());
@@ -58,29 +41,6 @@ public class AppController {
 		
 	}
 	
-	@RequestMapping(value="/registration", method=RequestMethod.GET)
-	public String goToRegistration(ModelMap model){
-		model.addAttribute("addUser", new Users());
-		return "registrationPage";
-		
-	}
-	
-	@RequestMapping(value = "/admin", method = RequestMethod.GET)
-    public String adminPage(ModelMap model) {
-        model.addAttribute("user", getPrincipal());
-        
-        List<Users> users = userDao.getActiveUsers();
-        model.addAttribute("users", users);
-        
-        model.addAttribute("edit", false);
-        model.addAttribute("new_category", new Category());
-        
-        List<Category> categories = categoryDao.getAllCategory();
-        model.addAttribute("categories", categories);
-        
-        return "admin";
-    }
-	
     @RequestMapping(value = "/db", method = RequestMethod.GET)
     public String dbaPage(ModelMap model) {
         model.addAttribute("user", getPrincipal());
@@ -92,6 +52,13 @@ public class AppController {
         model.addAttribute("user", getPrincipal());
         return "accessDenied";
     }
+
+	@RequestMapping(value="/registration", method=RequestMethod.GET)
+	public String goToRegistration(ModelMap model){
+		model.addAttribute("addUser", new Users());
+		return "registrationPage";
+		
+	}
     
     @RequestMapping(value="/register", method = RequestMethod.POST)
     public String addUser(@ModelAttribute("addUser") Users user) {
@@ -109,102 +76,6 @@ public class AppController {
             new SecurityContextLogoutHandler().logout(request, response, auth);
         }
         return "redirect:/login?logout";
-    }
-    
-    //PRODUCT PAGE CONTROLLER
-    @RequestMapping(value = "/handleProduct", method = RequestMethod.GET)
-    public String productPage(ModelMap model) {
-        model.addAttribute("user", getPrincipal());
-    	model.addAttribute("new_product",new Product());
-    	
-    	List<Category> category = categoryDao.getAllCategory();
-    	model.addAttribute("category", category);
-    	
-    	List<Supplier> suppliers = supplierDao.getAllSuppliers();
-    	model.addAttribute("suppliers", suppliers);
-    	
-        List<Product> products = productDao.getAllProducts();
-        model.addAttribute("products", products);
-        
-        return "product";
-    }
-    
-    @RequestMapping(value="/newProduct", method = RequestMethod.POST)
-    public String addNewProduct(@ModelAttribute("new_product") Product product)
-    {
-    	productDao.addProduct(product);
-    	return "redirect:/handleProduct";
-    }
-    
-    @RequestMapping(value="/edit-product-{product_id}", method = RequestMethod.GET)
-    public String editProduct (ModelMap model)
-    {
-    	
-    	return "product";
-    }
-    
-    @RequestMapping(value="/delete-product-{product_id}", method = RequestMethod.GET)
-    public String deleteProduct (@PathVariable int product_id)
-    {
-    	Product productId = productDao.getProduct(product_id);
-		productDao.deleteProduct(productId );
-    	return "redirect:/handleProduct";
-    }
-    
-    //CATEGORY CONTROLLER
-    @RequestMapping(value="/newCategory", method = RequestMethod.POST)
-    public String addCategory (@ModelAttribute("new_category") Category category)
-    {
-    	categoryDao.addCategory(category);
-    	return "redirect:/admin";
-    }
-    
-    @RequestMapping(value="/delete-category-{category_id}", method = RequestMethod.GET)
-    public String deleteCategory(@PathVariable int category_id)
-    {
-    	categoryDao.deleteCategory(categoryDao.getCategory(category_id));
-    	return "redirect:/admin";
-    }
-    
-    @RequestMapping(value="/edit-category-{category_id}" , method = RequestMethod.GET)
-    public String editCategory(@PathVariable int category_id , ModelMap model)
-    {
-    	Category category = categoryDao.getCategory(category_id);
-    	model.addAttribute("category_id", category_id);
-    	model.addAttribute("update_category", category);
-    	model.addAttribute("categoryName", category.getCategory_name());
-    	model.addAttribute("edit", true);
-    	
-    	List<Users> users = userDao.getActiveUsers();
-        model.addAttribute("users", users);
-        
-        List<Category> categories = categoryDao.getAllCategory();
-        model.addAttribute("categories", categories);
-    	
-    	return "admin";
-    }
-    
-    @RequestMapping(value="/edit-category-{category_id}" , method = RequestMethod.POST)
-    public String updateCategory(@ModelAttribute("update_category") Category category)
-    {
-    	categoryDao.updateCategory(category);
-    	return "redirect:/admin";
-    }
-    
-    //SUPPLIER CONTROLLER
-    @RequestMapping(value="/handleSupplier" , method = RequestMethod.GET)
-    public String supplierPage(ModelMap model)
-    {
-    	model.addAttribute("user", getPrincipal());
-    	model.addAttribute("suppliers", supplierDao.getAllSuppliers());
-    	return "supplier";
-    }
-    
-    @RequestMapping(value="/delete-supplier-{supplier_id}" , method = RequestMethod.GET)
-    public String deleteSupplier(@PathVariable int supplier_id)
-    {
-    	supplierDao.deleteSupplier(supplierDao.getSupplier(supplier_id));
-    	return "redirect:/handleSupplier";
     }
     
     private String getPrincipal(){
