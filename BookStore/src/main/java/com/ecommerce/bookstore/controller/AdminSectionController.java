@@ -40,7 +40,7 @@ public class AdminSectionController {
     public String adminPage(ModelMap model) {
         model.addAttribute("user", getPrincipal());
         
-        List<Users> users = userDao.getActiveUsers();
+        List<Users> users = userDao.getAllUsers();
         model.addAttribute("users", users);
         
         model.addAttribute("edit", false);
@@ -49,8 +49,24 @@ public class AdminSectionController {
         List<Category> categories = categoryDao.getAllCategory();
         model.addAttribute("categories", categories);
         
+        model.addAttribute("no_of_categories", categoryDao.getAllCategory().size());
+        model.addAttribute("no_of_active_users", userDao.getAllUsers().size());
+        
         return "admin";
     }
+	
+	@RequestMapping(value="/change-status-user-{user_id}" , method = RequestMethod.GET)
+	public String changeUserStatus(@PathVariable int user_id)
+	{
+		Users user = userDao.getUser(user_id);
+		if(user.isActive())
+				user.setActive(false);
+		else
+				user.setActive(true);
+		
+		userDao.updateUser(user);
+		return "redirect:/admin";
+	}
 	
 	//PRODUCT PAGE CONTROLLER
     @RequestMapping(value = "/handleProduct", method = RequestMethod.GET)
@@ -66,6 +82,8 @@ public class AdminSectionController {
     	
         List<Product> products = productDao.getAllProducts();
         model.addAttribute("products", products);
+        
+        model.addAttribute("no_of_products", productDao.getAllProducts().size());
         
         return "product";
     }
@@ -116,12 +134,15 @@ public class AdminSectionController {
     	model.addAttribute("categoryName", category.getCategory_name());
     	model.addAttribute("edit", true);
     	
-    	List<Users> users = userDao.getActiveUsers();
+    	List<Users> users = userDao.getAllUsers();
         model.addAttribute("users", users);
         
         List<Category> categories = categoryDao.getAllCategory();
         model.addAttribute("categories", categories);
     	
+        model.addAttribute("no_of_categories", categoryDao.getAllCategory().size());
+        model.addAttribute("no_of_active_users", userDao.getAllUsers().size());
+        
     	return "admin";
     }
     
@@ -138,6 +159,7 @@ public class AdminSectionController {
     {
     	model.addAttribute("user", getPrincipal());
     	model.addAttribute("edit", false);
+    	model.addAttribute("no_of_suppliers", supplierDao.getAllSuppliers().size());
     	model.addAttribute("new_supplier", new Supplier());
     	model.addAttribute("suppliers", supplierDao.getAllSuppliers());
     	return "supplier";

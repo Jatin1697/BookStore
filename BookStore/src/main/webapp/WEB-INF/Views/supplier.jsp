@@ -3,10 +3,19 @@
 <html>
 <head>
 <title>Admin/Supplier</title>
+<style type="text/css">
+.for_form {
+	padding : 20px 5px 5px 5px;
+	border : 2px solid #B22222;
+	border-radius: 15px;
+	margin-bottom: 15px;
+	margin-top : 5px;
+}
+</style>
 </head>
 <body>
 	<%@ include file = "adminNavbar.jsp" %>
-	<div class="container">
+	<div class="container for_form">
 	<c:choose>
 		<c:when test="${edit }">
 			<form:form class="form-horizontal" action="edit-supplier-${supplier_id }" method="POST" commandName="update_supplier">
@@ -78,7 +87,7 @@
 	</div>
 	<div class="panel panel-success">
 		<div class="panel-heading">
-		<h3 class="panel-title">SUPPLIERS</h3>
+		<h3 class="panel-title">SUPPLIERS <span class="badge" style="float:right">${no_of_suppliers}</span></h3>
 		</div>
 		<div class="panel-body ">
 			<table border=1 class="table table-striped table-hover table-responsive">

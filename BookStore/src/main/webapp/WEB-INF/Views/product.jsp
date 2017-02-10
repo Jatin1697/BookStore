@@ -27,7 +27,7 @@
 <br>
 	<div class="panel panel-warning">
 		<div class="panel-heading">
-		<h3 class="panel-title">PRODUCTS</h3>
+		<h3 class="panel-title">PRODUCTS<span class="badge" style="float:right">${no_of_products}</span></h3>
 		</div>
 		<div class="panel-body ">
 			<table border=1 class="table table-striped table-hover table-responsive">

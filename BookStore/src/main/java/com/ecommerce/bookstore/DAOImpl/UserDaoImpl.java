@@ -40,7 +40,7 @@ public class UserDaoImpl implements UserDao{
 	@SuppressWarnings("unchecked")
 	public List<Users> getAllUsers() {
 		// TODO Auto-generated method stub
-		return (List<Users>)sessionFactory.getCurrentSession().createQuery("from Users").list();
+		return (List<Users>)sessionFactory.getCurrentSession().createQuery("from Users where role_id = 3").list();
 	}
 
 	public Users getUser(int user_id) {
@@ -52,7 +52,7 @@ public class UserDaoImpl implements UserDao{
 	@Override
 	public List<Users> getActiveUsers() {
 		// TODO Auto-generated method stub
-		return (List<Users>) sessionFactory.getCurrentSession().createQuery("from Users where isActive = TRUE").list();
+		return (List<Users>) sessionFactory.getCurrentSession().createQuery("from Users where Active = TRUE").list();
 	}
 
 }

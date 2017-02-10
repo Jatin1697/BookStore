@@ -9,7 +9,7 @@
     <link rel='stylesheet' href='static/css/registration.css'>
 </head>
 <body>
-	<div class="container">
+	<div class="container for_form">
 		<form:form action='register' method='POST' class="form-horizontal" commandName="addUser">
 			
 			<div class="form-horizontal">

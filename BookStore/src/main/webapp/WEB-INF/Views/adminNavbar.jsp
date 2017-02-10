@@ -14,7 +14,7 @@ body{padding-top:70px;}
 	color: white;
 }
 input[placeholder], [placeholder], *[placeholder] {
-    color: red !important;
+    color: green !important;
 }
 </style>
 <nav class="navbar navbar-default navbar-fixed-top">

@@ -9,7 +9,7 @@
 	<div class="col-md-8">
 		<div class="panel panel-warning">
 			<div class="panel-heading">
-			<h3 class="panel-title">List of Active Users</h3>
+			<h3 class="panel-title">List of Users<span class="badge" style="float:right">${no_of_active_users}</span></h3>
 			</div>
 			<div class="panel-body ">
 				<table border=1 class="table table-striped table-hover table-responsive">
@@ -18,6 +18,7 @@
 						<th style="text-align: center">USERNAME</th>
 						<th style="text-align: center">E-MAIL</th>
 						<th style="text-align: center">CONTACT</th>
+						<th style="text-align: center">ACTIVE</th>
 					</tr>
 					</thead>
 					<tbody>
@@ -26,6 +27,17 @@
 							<td><c:out value="${user.username }"></c:out></td>
 							<td><c:out value="${user.email }"></c:out></td>
 							<td><c:out value="${user.mobile }"></c:out></td>
+							<td>
+								<c:choose>
+									<c:when test="${user.isActive() }">
+										<c:out value="Yes"></c:out>
+									</c:when>
+									<c:otherwise>
+										<c:out value="No"></c:out>
+									</c:otherwise>
+								</c:choose>
+								<a style="text-align: center" href='<c:url value='change-status-user-${user.user_id }'></c:url>' class="btn btn-danger">CHANGE</a>
+							</td>
 							</tr>
 						</c:forEach>
 					</tbody>
@@ -42,8 +54,10 @@
 					</div>
 					<div class="panel-body">
 						<form:form action="edit-category-${category_id}" commandName="update_category" method="POST">
-							<input type="text" name="category_name" id="category_name" placeholder="${categoryName }" class="form-control"><br>
-							<input type="submit" value="UPDATE" class="btn btn-success">
+							<div class="input-group">
+							<input type="text" name="category_name" id="category_name" value="${categoryName }" class="form-control"><br>
+							<span class="input-group-btn"><input type="submit" value="UPDATE" class="btn btn-success"></span>
+							</div>
 						</form:form>
 					</div>
 				</c:when>
@@ -53,8 +67,10 @@
 					</div>
 					<div class="panel-body">
 						<form:form action="newCategory" commandName="new_category" method="POST">
+							<div class="input-group">
 							<input type="text" name="category_name" id="category_name" placeholder="Category Name" class="form-control"><br>
-							<input type="submit" value="ADD" class="btn btn-success">
+							<span class="input-group-btn"><input type="submit" value="ADD" class="btn btn-success"></span>
+							</div>
 						</form:form>
 					</div>
 				</c:otherwise>
@@ -62,7 +78,7 @@
 		</div>
 		<div class="panel panel-success">
 			<div class="panel-heading">
-			<h3 class="panel-title">Categories</h3>
+			<h3 class="panel-title">Categories<span class="badge" style="float:right">${no_of_categories}</span></h3>
 			</div>
 			<div class="panel-body ">
 				<table border=1 class="table table-striped table-hover table-responsive">

@@ -36,7 +36,7 @@ public class Users implements Serializable{
 	private int role_id = 3;
 	
 	@Column
-	private boolean isActive=true;
+	private boolean Active=false;
 	private String email;
 	private String mobile;
 	private String address;
@@ -76,17 +76,12 @@ public class Users implements Serializable{
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	/**
-	 * @return the isActive
-	 */
+	
 	public boolean isActive() {
-		return isActive;
+		return Active;
 	}
-	/**
-	 * @param isActive the isActive to set
-	 */
-	public void setActive(boolean isActive) {
-		this.isActive = isActive;
+	public void setActive(boolean active) {
+		Active = active;
 	}
 	/**
 	 * @return the email
