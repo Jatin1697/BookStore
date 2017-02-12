@@ -13,8 +13,10 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.springframework.stereotype.Component;
+import org.springframework.web.multipart.MultipartFile;
 
 @Entity
 @Component
@@ -44,6 +46,15 @@ public class Product implements Serializable {
 	int price;
 	int quantity;
 	
+	@Transient
+	MultipartFile product_image;
+	
+	public MultipartFile getProduct_image() {
+		return product_image;
+	}
+	public void setProduct_image(MultipartFile product_image) {
+		this.product_image = product_image;
+	}
 	@ManyToOne(optional = false)
 	@JoinColumn(name = "category_id")
 	private Category category;

@@ -49,7 +49,7 @@ public class UserDaoImpl implements UserDao{
 	}
 
 	@SuppressWarnings("unchecked")
-	@Override
+	
 	public List<Users> getActiveUsers() {
 		// TODO Auto-generated method stub
 		return (List<Users>) sessionFactory.getCurrentSession().createQuery("from Users where Active = TRUE").list();

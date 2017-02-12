@@ -27,7 +27,7 @@
 							<td><c:out value="${user.username }"></c:out></td>
 							<td><c:out value="${user.email }"></c:out></td>
 							<td><c:out value="${user.mobile }"></c:out></td>
-							<td>
+							<td style="text-align: center">
 								<c:choose>
 									<c:when test="${user.isActive() }">
 										<c:out value="Yes"></c:out>
@@ -36,7 +36,7 @@
 										<c:out value="No"></c:out>
 									</c:otherwise>
 								</c:choose>
-								<a style="text-align: center" href='<c:url value='change-status-user-${user.user_id }'></c:url>' class="btn btn-danger">CHANGE</a>
+								<a href='<c:url value='change-status-user-${user.user_id }'></c:url>' class="btn btn-danger">CHANGE</a>
 							</td>
 							</tr>
 						</c:forEach>

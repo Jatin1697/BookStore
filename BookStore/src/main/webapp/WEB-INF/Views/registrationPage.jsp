@@ -10,7 +10,7 @@
 </head>
 <body>
 	<div class="container for_form">
-		<form:form action='register' method='POST' class="form-horizontal" commandName="addUser">
+		<form:form action='register' method='POST' class="form-horizontal" commandName="addUser" enctype="multipart/form-data">
 			
 			<div class="form-horizontal">
 				<div class="form-group">
@@ -49,6 +49,12 @@
 	                    	<input type="text" class="form-control" id="address" name="address" placeholder="Enter Address" required>
 	                    </div>
 	            </div>  
+	            <div class="form-group">
+	            	<label for="user_image" class="col-sm-2 control-label">Image</label>
+	            	<div class="col-sm-10">
+	                    	<input type="file" id="user_image" name="user_image" required>
+	                    </div>
+	            </div>
 	            <div class="form-group">
 				    <div class="col-sm-offset-2 col-sm-10">
 				      <input type="submit" class="btn btn-success" value="Register">

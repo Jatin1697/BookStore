@@ -8,6 +8,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+
+import org.springframework.web.multipart.MultipartFile;
 
 @Entity
 @Table(name="Users")
@@ -40,6 +43,15 @@ public class Users implements Serializable{
 	private String email;
 	private String mobile;
 	private String address;
+	
+	@Transient
+	private MultipartFile user_image;
+	public MultipartFile getUser_image() {
+		return user_image;
+	}
+	public void setUser_image(MultipartFile user_image) {
+		this.user_image = user_image;
+	}
 	/**
 	 * @return the user_id
 	 */

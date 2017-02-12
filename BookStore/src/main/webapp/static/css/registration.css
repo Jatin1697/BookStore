@@ -1,5 +1,5 @@
 body {
-	background: url{static/images/background.jpg};
+	background: url{${pageContext.servletContext.contextPath}/images/background.jpg};
 }
 .for_form {
 	padding : 20px 25px 5px 5px;

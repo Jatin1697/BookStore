@@ -83,12 +83,12 @@ public class AdminSectionController {
         List<Product> products = productDao.getAllProducts();
         model.addAttribute("products", products);
         
-        model.addAttribute("no_of_products", productDao.getAllProducts().size());
+        model.addAttribute("no_of_products", products.size());
         
         return "product";
     }
     
-    @RequestMapping(value="/newProduct", method = RequestMethod.POST)
+	@RequestMapping(value="/newProduct", method = RequestMethod.POST)
     public String addNewProduct(@ModelAttribute("new_product") Product product)
     {
     	productDao.addProduct(product);
@@ -96,9 +96,30 @@ public class AdminSectionController {
     }
     
     @RequestMapping(value="/edit-product-{product_id}", method = RequestMethod.GET)
-    public String editProduct (ModelMap model)
+    public String editProduct (@PathVariable int product_id , ModelMap model)
     {
+    	Product product = productDao.getProduct(product_id);
     	
+    	model.addAttribute("user", getPrincipal());
+    	model.addAttribute("edit", true);
+    	model.addAttribute("update_product",product);
+    	
+    	model.addAttribute("name", product.getProduct_name());
+    	model.addAttribute("description", product.getDescription());
+    	model.addAttribute("author", product.getAuthor());
+    	model.addAttribute("price", product.getPrice());
+    	model.addAttribute("quantity", product.getQuantity());
+    	
+    	List<Category> category = categoryDao.getAllCategory();
+    	model.addAttribute("category", category);
+    	
+    	List<Supplier> suppliers = supplierDao.getAllSuppliers();
+    	model.addAttribute("suppliers", suppliers);
+    	
+        List<Product> products = productDao.getAllProducts();
+        model.addAttribute("products", products);
+        
+        model.addAttribute("no_of_products", productDao.getAllProducts().size());
     	return "product";
     }
     
@@ -182,9 +203,16 @@ public class AdminSectionController {
     @RequestMapping(value="/edit-supplier-{supplier_id}" , method = RequestMethod.GET)
     public String editSupplier(@PathVariable int supplier_id , ModelMap model)
     {
+    	Supplier supplier1 = supplierDao.getSupplier(supplier_id);
+    	
     	model.addAttribute("edit", true);
-    	model.addAttribute("update_supplier" , supplierDao.getSupplier(supplier_id));
+    	model.addAttribute("update_supplier" , supplier1);
     	model.addAttribute("suppliers", supplierDao.getAllSuppliers());
+    	model.addAttribute("name", supplier1.getSupplier_name());
+    	model.addAttribute("address", supplier1.getSupplier_address());
+    	model.addAttribute("email", supplier1.getSupplier_email());
+    	model.addAttribute("mob_no", supplier1.getSupplier_mob_no());
+    	
     	return "supplier";
     }
     
