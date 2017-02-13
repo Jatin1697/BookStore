@@ -76,7 +76,7 @@ public class AppController {
     	MultipartFile image = user.getUser_image();
     	String rootDirectory = request.getSession().getServletContext().getRealPath("/");
     	
-    	path = Paths.get(rootDirectory + "/static/images/user/" + user.getName()+".png");
+    	path = Paths.get(rootDirectory + "/static/images/user/" + user.getUsername()+".png");
     	System.out.println(path);
     	if(image != null && !image.isEmpty())
     	{

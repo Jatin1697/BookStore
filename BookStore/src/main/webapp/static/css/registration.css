@@ -1,10 +1,21 @@
-body {
-	background: url{${pageContext.servletContext.contextPath}/images/background.jpg};
-}
-.for_form {
-	padding : 20px 25px 5px 5px;
-	border : 2px solid #B22222;
-	border-radius: 15px;
+.forform {
 	margin-bottom: 15px;
+	margin-left: 200px;
+	margin-right: 200px;
 	margin-top : 15px;
+	padding-top : 15px; 
+	border: 2px solid #111111;
+	border-radius: 15px;
+	height: 450px;
+}
+.user_img {
+	margin: 15px;
+	outline: 2px solid #111111;
+	height: 300px;
+	width: 250px;
+}
+.sign_up {
+	font-size: 50px;
+	font-family: cambria;
+	margin-left: 50px;
 }
