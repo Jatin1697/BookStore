@@ -5,11 +5,20 @@
 <title>Admin/Supplier</title>
 <style type="text/css">
 .for_form {
+	/*background-color: white;*/
 	padding : 20px 5px 5px 5px;
 	border : 2px solid #B22222;
 	border-radius: 15px;
 	margin-bottom: 15px;
 	margin-top : 5px;
+}
+.results tr[visible='false'],
+.no-result{
+  display:none;
+}
+
+.results tr[visible='true']{
+  display:table-row;
 }
 </style>
 </head>
@@ -91,7 +100,10 @@
 		<h3 class="panel-title">SUPPLIERS <span class="badge" style="float:right">${no_of_suppliers}</span></h3>
 		</div>
 		<div class="panel-body ">
-			<table border=1 class="table table-striped table-hover table-responsive">
+			<div class="form-group">
+			    <input type="text" class="search form-control" placeholder="Filter Suppliers">
+			</div>
+			<table border=1 class="table table-striped table-hover table-responsive results">
 				<thead>
 				<tr>
 					<th style="text-align: center">NAME</th>

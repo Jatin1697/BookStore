@@ -4,6 +4,16 @@
 <head>
 	<title>Admin</title>
 </head>
+<style>
+.results tr[visible='false'],
+.no-result{
+  display:none;
+}
+
+.results tr[visible='true']{
+  display:table-row;
+}
+</style>
 <body>
 	<%@ include file = "adminNavbar.jsp" %>
 	<div class="col-md-8">
@@ -81,7 +91,10 @@
 			<h3 class="panel-title">Categories<span class="badge" style="float:right">${no_of_categories}</span></h3>
 			</div>
 			<div class="panel-body ">
-				<table border=1 class="table table-striped table-hover table-responsive">
+				<div class="form-group">
+			    	<input type="text" class="search form-control" placeholder="Filter Categories">
+				</div>
+				<table border=1 class="table table-striped table-hover table-responsive results">
 					<thead>
 					<tr>
 						<th style="text-align: center">NAME</th>

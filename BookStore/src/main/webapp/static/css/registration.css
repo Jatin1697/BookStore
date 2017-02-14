@@ -4,9 +4,6 @@
 	margin-right: 200px;
 	margin-top : 15px;
 	padding-top : 15px; 
-	border: 2px solid #111111;
-	border-radius: 15px;
-	height: 450px;
 }
 .user_img {
 	margin: 15px;
@@ -17,5 +14,17 @@
 .sign_up {
 	font-size: 50px;
 	font-family: cambria;
-	margin-left: 50px;
+	text-align: center;
+}
+#demo {
+	text-align: center;
+	background-color: #CC0000;
+	font-size:	15px;
+	color: #fff;
+	margin-bottom: 0px;
+	margin-left: 200px;
+	margin-right: 200px;
+	margin-top : 0px;
+	border: 2px solid #fff;
+	border-radius: 15px;
 }

@@ -4,6 +4,8 @@
 <head>
 	<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> 
+	<script src="static/js/table_filter.js"></script>
 </head>
 <style> 
 body{padding-top:70px;}
@@ -12,6 +14,10 @@ body{padding-top:70px;}
 }
 .nav.navbar-nav li a {
 	color: white;
+}
+.nav.navbar-nav li a:HOVER {
+	color: white;
+	font-size: 18px;
 }
 input[placeholder], [placeholder], *[placeholder] {
     color: green !important;

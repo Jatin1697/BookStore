@@ -20,19 +20,17 @@ var loadFile = function(event) {
   };
 
 </script>
-<body>
-	<!--  
+<body>  
 	<div style='position:absolute;z-index:0;left:0;top:0;width:100%;height:100%'>
-         <img src='static/images/background.jpg' style='width:100%;height:100%' alt='[]' />
-     </div>
-     -->
+         <img src='static/images/background.jpg' style='width:100%;height:100%;opacity: 0.5;' alt='[]' />
+    </div>  
 	<div class="container">
 		<div class="row">
 			<div class="col-md-offset-4 col-md-4 col-sm-offset-4 col-sm-4">
 				<p class="sign_up">SIGN UP</p>
 			</div>
 		</div>
-		<p id="demo">${msg}</p>
+		<p id="demo"><span>${msg}</span></p>
 		<div class="forform">
 			<form:form action='register' method='POST' class="form-horizontal" commandName="addUser" enctype="multipart/form-data">
 				<div class="col-md-7 col-sm-12">
@@ -109,7 +107,7 @@ $("#name").click(function(){
     var password = $("#password").val();
     var confirm = $("#Confirmpassword").val();
     if(password != confirm) {
-    	$("#demo").text("Re-enter Password");
+    	$("#demo").text("! Re-enter Password");
     }
     else if(password == confirm) {
     	$("#demo").hide(1000);
