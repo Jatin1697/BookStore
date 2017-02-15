@@ -43,6 +43,11 @@ public class CategoryDaoImpl implements CategoryDao{
 		// TODO Auto-generated method stub
 		return sessionFactory.getCurrentSession().get(Category.class, category_id);
 	}
+
+	public Category getCategoryByName(String category_name) {
+		// TODO Auto-generated method stub
+		return sessionFactory.getCurrentSession().get(Category.class, category_name);
+	}
 	
 
 }

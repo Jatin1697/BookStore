@@ -155,23 +155,28 @@ var loadFile = function(event) {
 						  <div class="form-group">
 						  	<label for="category" class="col-sm-2 control-label">Category</label>
 						  	<div class="col-sm-10 col-md-6">
-							  	<select name="category">
-									<c:forEach items="${category }" var="categories">
-										<option value='${categories.category_id}'>${categories.category_name}</option>
-									</c:forEach>
+							  	<select name="category" id="category">
+									
+										<option value="">Select</option>
+										<c:forEach items="${category }" var="categories">
+											<option value="${categories.category_name }">${categories.category_name }</option>
+										</c:forEach>
+									
 								</select>
 							</div>
 						  </div>
+						   
 						  <div class="form-group">
 						  	<label for="supplier" class="col-sm-2 control-label">Supplier</label>
 							<div class="col-sm-10 col-md-6">
 								<select name="supplier">
 									<c:forEach items="${suppliers }" var="supplier">
-										<option value='${supplier.supplier_id}'>${supplier.supplier_name}</option>
+										<option value=""><c:out value="${supplier.supplier_name }"></c:out></option>
 									</c:forEach>
 								</select>
 							</div>
 						  </div>
+						   
 						  <div class="form-group">
 						    <div class="col-sm-offset-2 col-sm-10">
 						      <input type="submit" class="btn btn-success" value="ADD">
@@ -201,6 +206,7 @@ var loadFile = function(event) {
 					<th style="text-align: center">NAME</th>
 					<th style="text-align: center">AUTHOR</th>
 					<th style="text-align: center">DESCRIPTION</th>
+					<th style="text-align: center">CATEGORY</th>
 					<th style="text-align: center">PRICE</th>
 					<th style="text-align: center">QUANTITY</th>
 					<th style="text-align: center" width="100">EDIT</th>
@@ -213,6 +219,7 @@ var loadFile = function(event) {
 						<td><c:out value="${product.product_name }"></c:out></td>
 						<td><c:out value="${product.author }"></c:out></td>
 						<td><c:out value="${product.description }"></c:out></td>
+						<td><c:out value="${product.getCategory().getCategory_name() }"></c:out></td>
 						<td><c:out value="${product.price }"></c:out></td>
 						<td><c:out value="${product.quantity }"></c:out></td>
 						<td style="text-align: center"><a href='<c:url value='/edit-product-${product.product_id }'></c:url>' class="btn btn-info">Edit</a></td>

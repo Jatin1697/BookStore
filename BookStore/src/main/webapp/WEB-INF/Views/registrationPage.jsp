@@ -38,7 +38,7 @@ var loadFile = function(event) {
 						<div class="form-group">
 							<label for="username" class="col-sm-4 control-label">Username</label>
 								<div class="col-sm-8">
-			                    	<input type="text" class="form-control" id="username" name="username" placeholder="Username" required>
+			                    	<input type="text" class="form-control" id="username" name="username" placeholder="Username" value="${username }" required>
 			                    </div>
 			            </div>
 			            <div class="form-group">
@@ -56,25 +56,25 @@ var loadFile = function(event) {
 			            <div class="form-group">
 							<label for="name" class="col-sm-4 control-label">Name</label>
 								<div class="col-sm-8">
-			                    	<input type="text" class="form-control" id="name" name="name" placeholder="Name" required>
+			                    	<input type="text" class="form-control" id="name" name="name" placeholder="Name" value="${name }" required>
 			                    </div>
 			            </div>
 			            <div class="form-group">
 							<label for="email" class="col-sm-4 control-label">E-mail</label>
 								<div class="col-sm-8">
-			                    	<input type="email" class="form-control" id="email" name="email" placeholder="E-mail" required>
+			                    	<input type="email" class="form-control" id="email" name="email" placeholder="E-mail" value="${email }" required>
 			                    </div>
 			            </div>
 			            <div class="form-group">
 							<label for="mobile" class="col-sm-4 control-label">Mobile No</label>
 								<div class="col-sm-8">
-			                    	<input type="tel" class="form-control" id="mobile" name="mobile" placeholder="Contact Number" required>
+			                    	<input type="tel" class="form-control" id="mobile" name="mobile" placeholder="Contact Number" value="${mobile }" required>
 			                    </div>
 			            </div>
 			            <div class="form-group">
 							<label for="address" class="col-sm-4 control-label">Address</label>
 								<div class="col-sm-8">
-			                    	<input type="text" class="form-control" id="address" name="address" placeholder="Address" required>
+			                    	<input type="text" class="form-control" id="address" name="address" placeholder="Address" value="${address }" required>
 			                    </div>
 			            </div>  
 			            <div class="form-group">

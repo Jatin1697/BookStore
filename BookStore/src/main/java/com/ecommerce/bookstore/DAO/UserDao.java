@@ -12,4 +12,5 @@ public interface UserDao {
 	public List<Users> getAllUsers();
 	public Users getUser(int user_id);
 	public List<Users> getActiveUsers();
+	public List<Users> getUsersOnly();
 }

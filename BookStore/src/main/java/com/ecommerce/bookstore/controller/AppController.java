@@ -3,6 +3,7 @@ package com.ecommerce.bookstore.controller;
 import java.io.File;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -76,6 +77,35 @@ public class AppController {
     	{
     		model.addAttribute("msg", "! Please input valid data");
     		return "registrationPage";
+    	}
+    	
+    	List<Users> users = userDao.getAllUsers();
+    	for(int i=0; i<users.size(); i++ )
+    	{
+    		if(user.getUsername().equals(users.get(i).getUsername()))
+    		{
+    			model.addAttribute("msg", "! Username alresdy exists");
+    			model.addAttribute("email", user.getEmail());
+    			model.addAttribute("mobile", user.getMobile());
+    			model.addAttribute("address", user.getAddress());
+    			return "registrationPage";
+    		}
+    		if(user.getEmail().equals(users.get(i).getEmail()))
+    		{
+    			model.addAttribute("msg", "! Email alresdy exists");
+    			model.addAttribute("username", user.getUsername());
+    			model.addAttribute("mobile", user.getMobile());
+    			model.addAttribute("address", user.getAddress());
+    			return "registrationPage";
+    		}
+    		if(user.getMobile().equals(users.get(i).getMobile()))
+    		{
+    			model.addAttribute("msg", "! Contact alresdy exists");
+    			model.addAttribute("username", user.getUsername());
+    			model.addAttribute("email", user.getEmail());
+    			model.addAttribute("address", user.getAddress());
+    			return "registrationPage";
+    		}
     	}
     	
     	userDao.addUser(user);

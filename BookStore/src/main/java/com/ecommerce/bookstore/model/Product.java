@@ -55,6 +55,7 @@ public class Product implements Serializable {
 	public void setProduct_image(MultipartFile product_image) {
 		this.product_image = product_image;
 	}
+	
 	@ManyToOne(optional = false)
 	@JoinColumn(name = "category_id")
 	private Category category;

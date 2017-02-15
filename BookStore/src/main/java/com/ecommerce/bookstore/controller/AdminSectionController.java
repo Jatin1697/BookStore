@@ -1,6 +1,11 @@
 package com.ecommerce.bookstore.controller;
 
+import java.io.File;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -11,6 +16,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.ecommerce.bookstore.DAO.CategoryDao;
 import com.ecommerce.bookstore.DAO.ProductDao;
@@ -36,11 +43,13 @@ public class AdminSectionController {
 	@Autowired
 	SupplierDao supplierDao;
 	
+	Path path;
+	
 	@RequestMapping(value = "/admin", method = RequestMethod.GET)
     public String adminPage(ModelMap model) {
         model.addAttribute("user", getPrincipal());
-        
-        List<Users> users = userDao.getAllUsers();
+      
+        List<Users> users = userDao.getUsersOnly();
         model.addAttribute("users", users);
         
         model.addAttribute("edit", false);
@@ -50,7 +59,7 @@ public class AdminSectionController {
         model.addAttribute("categories", categories);
         
         model.addAttribute("no_of_categories", categoryDao.getAllCategory().size());
-        model.addAttribute("no_of_active_users", userDao.getAllUsers().size());
+        model.addAttribute("no_of_active_users", userDao.getUsersOnly().size());
         
         return "admin";
     }
@@ -89,9 +98,30 @@ public class AdminSectionController {
     }
     
 	@RequestMapping(value="/newProduct", method = RequestMethod.POST)
-    public String addNewProduct(@ModelAttribute("new_product") Product product)
+    public String addNewProduct(@ModelAttribute("new_product") Product product , @RequestParam("category") String category_name , HttpServletRequest request)
     {
+		Category category = categoryDao.getCategoryByName(category_name);
+		product.setCategory(category);
+		
     	productDao.addProduct(product);
+    	
+    	MultipartFile image = product.getProduct_image();
+    	String rootDirectory = request.getSession().getServletContext().getRealPath("/");
+    	
+    	path = Paths.get(rootDirectory + "/static/images/product/" + product.getProduct_name()+".png");
+    	System.out.println(path);
+    	if(image != null && !image.isEmpty())
+    	{
+    		try
+    		{
+    			image.transferTo(new File(path.toString()));
+    		}
+    		catch(Exception e)
+    		{
+    			e.printStackTrace();
+    		}
+    	}
+    	
     	return "redirect:/handleProduct";
     }
     
@@ -155,14 +185,14 @@ public class AdminSectionController {
     	model.addAttribute("categoryName", category.getCategory_name());
     	model.addAttribute("edit", true);
     	
-    	List<Users> users = userDao.getAllUsers();
+    	List<Users> users = userDao.getUsersOnly();
         model.addAttribute("users", users);
         
         List<Category> categories = categoryDao.getAllCategory();
         model.addAttribute("categories", categories);
     	
         model.addAttribute("no_of_categories", categoryDao.getAllCategory().size());
-        model.addAttribute("no_of_active_users", userDao.getAllUsers().size());
+        model.addAttribute("no_of_active_users", userDao.getUsersOnly().size());
         
     	return "admin";
     }
