@@ -1,7 +1,7 @@
 package com.ecommerce.bookstore.model;
 
 import java.io.Serializable;
-import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -36,12 +36,12 @@ public class Supplier implements Serializable {
 	String supplier_email;
 	
 	@ManyToMany(mappedBy = "supplier" , cascade = CascadeType.ALL)
-	private List<Product> product;
+	private Set<Product> product;
 	
-	public List<Product> getProduct() {
+	public Set<Product> getProduct() {
 		return product;
 	}
-	public void setProduct(List<Product> product) {
+	public void setProduct(Set<Product> product) {
 		this.product = product;
 	}
 	/**

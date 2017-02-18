@@ -85,19 +85,11 @@ var loadFile = function(event) {
 						  </div>
 						  <div class="form-group" class="form-control" >
 						  	<label for="category" class="col-sm-2 control-label">Category</label>
-							<select name="category">
-								<c:forEach items="${category }" var="categories">
-									<option value='${categories}'>${categories.category_name}</option>
-								</c:forEach>
-							</select>
+							<form:select path="category" items="${category }" itemValue="category" itemLabel="type" class="form-control input-sm"></form:select>
 						  </div>
 						  <div class="form-group" class="form-control" >
 						  	<label for="supplier" class="col-sm-2 control-label">Supplier</label>
-						  	<select name="supplier" >
-								<c:forEach items="${suppliers }" var="supplier">
-									<option value='${supplier}'>${supplier.supplier_name}</option>
-								</c:forEach>
-							</select>
+						  	<form:select path="supplier" items="${suppliers }" itemValue="supplier" itemLabel="type" class="form-control input-sm" multiple="true"></form:select>
 						  </div>
 						  <div class="form-group" >
 						    <div class="col-sm-offset-2 col-sm-10">
@@ -107,7 +99,7 @@ var loadFile = function(event) {
 						  </div>
 					  </div>
 					  <div class="col-md-5">
-						  <div class="product_img">
+						  	<div class="product_img">
 								<img src="http://placehold.it/250x300" id="output" height="300px"/>
 							</div>
 					  </div>
@@ -155,25 +147,16 @@ var loadFile = function(event) {
 						  <div class="form-group">
 						  	<label for="category" class="col-sm-2 control-label">Category</label>
 						  	<div class="col-sm-10 col-md-6">
-							  	<select name="category" id="category">
-									
-										<option value="">Select</option>
-										<c:forEach items="${category }" var="categories">
-											<option value="${categories.category_name }">${categories.category_name }</option>
-										</c:forEach>
-									
-								</select>
+									<form:select path="category" items="${category }" itemValue="${category.category_name }" itemLabel="type" class="form-control input-sm">
+										
+									</form:select>
 							</div>
 						  </div>
 						   
 						  <div class="form-group">
 						  	<label for="supplier" class="col-sm-2 control-label">Supplier</label>
 							<div class="col-sm-10 col-md-6">
-								<select name="supplier">
-									<c:forEach items="${suppliers }" var="supplier">
-										<option value=""><c:out value="${supplier.supplier_name }"></c:out></option>
-									</c:forEach>
-								</select>
+									<form:select path="supplier" items="${suppliers }" itemValue="supplier" itemLabel="type" class="form-control input-sm" multiple="true"></form:select>
 							</div>
 						  </div>
 						   

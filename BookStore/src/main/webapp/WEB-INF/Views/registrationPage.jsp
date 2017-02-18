@@ -6,7 +6,8 @@
 <head>
     <title>RegistationPage</title>
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> 
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <link href='//fonts.googleapis.com/css?family=Butcherman' rel='stylesheet'> 
     <link rel='stylesheet' href='static/css/registration.css'>
 </head>
 <script type="text/javascript">

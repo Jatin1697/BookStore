@@ -38,7 +38,7 @@
 	    			<span class='password-icon-style icon password-icon fontawesome-lock'></span>
 	   				<input type='password' class='password' id='password' name='password' placeholder='Password'>
 	  			</span>
-	  			<div class='forgot'><a href='<c:url value='/forgot_details'></c:url>'>Forgot Details?</a></div>
+	  			<div class='forgot'><a href='<c:url value='/home'></c:url>'>Forgot Details?</a></div>
 	 			<div class='divider'></div>
 	  			<button>LOG IN</button>
 	  			<p>Not Registered <a href='<c:url value='/registration'></c:url>'>REGISTER</a> Here</p>

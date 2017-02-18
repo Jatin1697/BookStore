@@ -1,7 +1,8 @@
 package com.ecommerce.bookstore.model;
 
 import java.io.Serializable;
-import java.util.List;
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -56,7 +57,7 @@ public class Product implements Serializable {
 		this.product_image = product_image;
 	}
 	
-	@ManyToOne(optional = false)
+	@ManyToOne(optional = false )
 	@JoinColumn(name = "category_id")
 	private Category category;
 	
@@ -69,12 +70,12 @@ public class Product implements Serializable {
 	
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name="product_supplier" , joinColumns={@JoinColumn(name = "product_id")},inverseJoinColumns={@JoinColumn(name="supplier_id")})
-	private List<Supplier> supplier;
+	private Set<Supplier> supplier;
 	
-	public List<Supplier> getSupplier() {
+	public Set<Supplier> getSupplier() {
 		return supplier;
 	}
-	public void setSupplier(List<Supplier> supplier) {
+	public void setSupplier(Set<Supplier> supplier) {
 		this.supplier = supplier;
 	}
 	/**

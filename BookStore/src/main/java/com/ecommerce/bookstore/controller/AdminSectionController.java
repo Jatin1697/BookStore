@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.ecommerce.bookstore.DAO.CategoryDao;
@@ -98,11 +97,8 @@ public class AdminSectionController {
     }
     
 	@RequestMapping(value="/newProduct", method = RequestMethod.POST)
-    public String addNewProduct(@ModelAttribute("new_product") Product product , @RequestParam("category") String category_name , HttpServletRequest request)
+    public String addNewProduct(@ModelAttribute("new_product") Product product , HttpServletRequest request)
     {
-		Category category = categoryDao.getCategoryByName(category_name);
-		product.setCategory(category);
-		
     	productDao.addProduct(product);
     	
     	MultipartFile image = product.getProduct_image();
