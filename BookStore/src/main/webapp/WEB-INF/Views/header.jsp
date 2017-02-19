@@ -42,8 +42,8 @@
       <div class="container-fluid">
         <ul class="nav navbar-nav">
           <li class="activ"><a href='<c:url value='/home'></c:url>'><span class="glyphicon glyphicon-home"> Home</span></a></li>
-          <li><a href="#">About Us</a></li>
-          <li><a href="#">Contact Us</a></li>
+          <li><a href='<c:url value="/aboutUs"></c:url>'>About Us</a></li>
+          <li><a href='<c:url value="/contactUs"></c:url>'>Contact Us</a></li>
           <li class="dropdown"><a class="dropbtn" href="#"><span class="pro">Products <span class="caret"></span></span></a>
             <ul class="dropdown-menu">
               <li><a href="#">Product 1</a></li>

@@ -131,6 +131,18 @@ public class AppController {
     	return "redirect:/login";
     }
     
+    @RequestMapping(value="/aboutUs", method = RequestMethod.GET)
+    public String aboutUsPage()
+    {
+    	return "about_us";
+    }
+    
+    @RequestMapping(value="/contactUs", method = RequestMethod.GET)
+    public String contactUsPage()
+    {
+    	return "contact_us";
+    }
+    
     @RequestMapping(value="/logout", method = RequestMethod.GET)
     public String logoutPage (HttpServletRequest request, HttpServletResponse response) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();

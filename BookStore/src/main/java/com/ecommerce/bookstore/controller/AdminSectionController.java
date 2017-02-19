@@ -39,6 +39,12 @@ public class AdminSectionController {
 	@Autowired
 	CategoryDao categoryDao;
 	
+	@Autowired 
+	Category category;
+	
+	@Autowired
+	Supplier supplier;
+	
 	@Autowired
 	SupplierDao supplierDao;
 	
@@ -99,6 +105,12 @@ public class AdminSectionController {
 	@RequestMapping(value="/newProduct", method = RequestMethod.POST)
     public String addNewProduct(@ModelAttribute("new_product") Product product , HttpServletRequest request)
     {
+		
+		category = categoryDao.getCategory(product.getCategory().getCategory_id());
+		supplier = supplierDao.getSupplier(product.getSupplier().getSupplier_id());
+		
+		product.setCategory(category);
+		product.setSupplier(supplier);
     	productDao.addProduct(product);
     	
     	MultipartFile image = product.getProduct_image();

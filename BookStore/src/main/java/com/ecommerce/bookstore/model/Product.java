@@ -1,8 +1,6 @@
 package com.ecommerce.bookstore.model;
 
 import java.io.Serializable;
-import java.util.Set;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -10,8 +8,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
@@ -37,7 +33,7 @@ public class Product implements Serializable {
 
 	@Id
 	@Column
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	int product_id;
 	
 	@Column
@@ -68,14 +64,14 @@ public class Product implements Serializable {
 		this.category = category;
 	}
 	
-	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable(name="product_supplier" , joinColumns={@JoinColumn(name = "product_id")},inverseJoinColumns={@JoinColumn(name="supplier_id")})
-	private Set<Supplier> supplier;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="supplier_id")
+	private Supplier supplier;
 	
-	public Set<Supplier> getSupplier() {
+	public Supplier getSupplier() {
 		return supplier;
 	}
-	public void setSupplier(Set<Supplier> supplier) {
+	public void setSupplier(Supplier supplier) {
 		this.supplier = supplier;
 	}
 	/**

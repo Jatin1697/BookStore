@@ -44,7 +44,7 @@ var loadFile = function(event) {
 	<%@ include file = "adminNavbar.jsp" %> 
 	<div class="container for_form">
 		<c:choose>
-			<c:when test="${edit }">
+			<c:when test="${edit}">
 				<form:form class="form-horizontal" action="edit-product-${supplier_id }" method="POST" commandName="update_product">
 					<div class="col-md-7">
 						<div class="form-group">
@@ -85,11 +85,23 @@ var loadFile = function(event) {
 						  </div>
 						  <div class="form-group" class="form-control" >
 						  	<label for="category" class="col-sm-2 control-label">Category</label>
-							<form:select path="category" items="${category }" itemValue="category" itemLabel="type" class="form-control input-sm"></form:select>
+						  	<div class="col-sm-10 col-md-6">
+									<select>
+										<c:forEach items="${category }" var="category">
+											<option value="${category.category_id }"><c:out value="${category.category_name }"></c:out></option>
+										</c:forEach>
+									</select>
+							</div>
 						  </div>
 						  <div class="form-group" class="form-control" >
 						  	<label for="supplier" class="col-sm-2 control-label">Supplier</label>
-						  	<form:select path="supplier" items="${suppliers }" itemValue="supplier" itemLabel="type" class="form-control input-sm" multiple="true"></form:select>
+						  	<div class="col-sm-10 col-md-6">
+									<select>
+										<c:forEach items="${suppliers }" var="supplier">
+											<option value="${supplier.supplier_id }"><c:out value="${supplier.supplier_name }"></c:out></option>
+										</c:forEach>
+									</select>
+							</div>
 						  </div>
 						  <div class="form-group" >
 						    <div class="col-sm-offset-2 col-sm-10">
@@ -141,22 +153,22 @@ var loadFile = function(event) {
 						  <div class="form-group">
 						    <label for="product_image" class="col-sm-2 control-label col-md-2">Image</label>
 						    <div class="col-sm-10 col-md-6">
-						      <input type="file" class="form-control" id="product_image" name="product_image">
+						      <input type="file" class="form-control" id="product_image" onchange="loadFile(event)" name="product_image">
 						    </div>
 						  </div>
 						  <div class="form-group">
 						  	<label for="category" class="col-sm-2 control-label">Category</label>
 						  	<div class="col-sm-10 col-md-6">
-									<form:select path="category" items="${category }" itemValue="${category.category_name }" itemLabel="type" class="form-control input-sm">
-										
-									</form:select>
+									<form:select path="category.category_id" items="${category }" itemValue="category_id" itemLabel="category_name"></form:select>
 							</div>
 						  </div>
 						   
 						  <div class="form-group">
 						  	<label for="supplier" class="col-sm-2 control-label">Supplier</label>
 							<div class="col-sm-10 col-md-6">
-									<form:select path="supplier" items="${suppliers }" itemValue="supplier" itemLabel="type" class="form-control input-sm" multiple="true"></form:select>
+								<div class="col-sm-10 col-md-6">
+									<form:select path="supplier.supplier_id" items="${suppliers }" itemValue="supplier_id" itemLabel="supplier_name"></form:select>
+								</div>
 							</div>
 						  </div>
 						   
