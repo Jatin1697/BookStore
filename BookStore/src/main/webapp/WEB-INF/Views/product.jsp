@@ -2,6 +2,7 @@
 <html>
 <head>
 <title>Admin/Product</title>
+
 <style type="text/css">
 .for_form {
 	padding : 20px 5px 5px 5px;
@@ -24,8 +25,8 @@
 .product_img {
 	margin: 15px;
 	outline: 2px solid #111111;
-	height: 300px;
-	width: 250px;
+	height: 200px;
+	width: 150px;
 }
 </style>
 </head>
@@ -45,7 +46,7 @@ var loadFile = function(event) {
 	<div class="container for_form">
 		<c:choose>
 			<c:when test="${edit}">
-				<form:form class="form-horizontal" action="edit-product-${supplier_id }" method="POST" commandName="update_product">
+				<form:form class="form-horizontal" action="edit-product-${product_id }" commandName="update_product" enctype="multipart/form-data"  method="POST">
 					<div class="col-md-7">
 						<div class="form-group">
 						    <label for="product_name" class="col-sm-2 control-label">Name</label>
@@ -80,27 +81,27 @@ var loadFile = function(event) {
 						  <div class="form-group">
 						    <label for="product_image" class="col-sm-2 control-label">Image</label>
 						    <div class="col-sm-10">
-						      <input type="file" class="form-control" value="" id="product_image" name="product_image">
+						      <input type="file" class="form-control" value="" id="product_image" name="product_image" onchange="loadFile(event)">
 						    </div>
 						  </div>
 						  <div class="form-group" class="form-control" >
 						  	<label for="category" class="col-sm-2 control-label">Category</label>
 						  	<div class="col-sm-10 col-md-6">
-									<select>
-										<c:forEach items="${category }" var="category">
-											<option value="${category.category_id }"><c:out value="${category.category_name }"></c:out></option>
-										</c:forEach>
-									</select>
+						  		<div class="form-control">
+									<form:select path="category.category_id">
+										<form:options items="${category }" itemValue="category_id" itemLabel="category_name" />
+									</form:select>
+								</div>
 							</div>
 						  </div>
 						  <div class="form-group" class="form-control" >
 						  	<label for="supplier" class="col-sm-2 control-label">Supplier</label>
 						  	<div class="col-sm-10 col-md-6">
-									<select>
-										<c:forEach items="${suppliers }" var="supplier">
-											<option value="${supplier.supplier_id }"><c:out value="${supplier.supplier_name }"></c:out></option>
-										</c:forEach>
-									</select>
+						  		<div class="form-control">
+									<form:select path="supplier.supplier_id">
+										<form:options items="${suppliers }" itemValue="supplier_id" itemLabel="supplier_name" />
+									</form:select>
+								</div>
 							</div>
 						  </div>
 						  <div class="form-group" >
@@ -112,7 +113,7 @@ var loadFile = function(event) {
 					  </div>
 					  <div class="col-md-5">
 						  	<div class="product_img">
-								<img src="http://placehold.it/250x300" id="output" height="300px"/>
+								<img src="http://placehold.it/150x200" id="output" height="200px" width="200px;"/>
 							</div>
 					  </div>
 				 </form:form>
@@ -159,15 +160,21 @@ var loadFile = function(event) {
 						  <div class="form-group">
 						  	<label for="category" class="col-sm-2 control-label">Category</label>
 						  	<div class="col-sm-10 col-md-6">
-									<form:select path="category.category_id" items="${category }" itemValue="category_id" itemLabel="category_name"></form:select>
+						  		<div class="form-control">
+									<form:select path="category.category_id">
+										<form:options selected="true" items="${category }" itemValue="category_id" itemLabel="category_name" />
+									</form:select>
+								</div>
 							</div>
 						  </div>
 						   
 						  <div class="form-group">
 						  	<label for="supplier" class="col-sm-2 control-label">Supplier</label>
 							<div class="col-sm-10 col-md-6">
-								<div class="col-sm-10 col-md-6">
-									<form:select path="supplier.supplier_id" items="${suppliers }" itemValue="supplier_id" itemLabel="supplier_name"></form:select>
+								<div class="form-control">
+									<form:select path="supplier.supplier_id">
+										<form:options selected="true" items="${suppliers }" itemValue="supplier_id" itemLabel="supplier_name" />
+									</form:select>
 								</div>
 							</div>
 						  </div>
@@ -175,12 +182,13 @@ var loadFile = function(event) {
 						  <div class="form-group">
 						    <div class="col-sm-offset-2 col-sm-10">
 						      <input type="submit" class="btn btn-success" value="ADD">
+						      <input class="btn btn-warning" type="reset">
 						    </div>
 						  </div>
 					</div>
 					<div class="col-md-5">
 						<div class="product_img">
-							<img src="http://placehold.it/250x300" id="output" height="300px"/>
+							<img src="http://placehold.it/150x200" id="output" height="200px" width="150px"/>
 						</div>
 					</div>
 				</form:form>
@@ -194,7 +202,7 @@ var loadFile = function(event) {
 		<div class="panel-body ">
 			<div class="form-group">
 			    <input type="text" class="search form-control" placeholder="Filter Products">
-			</div>
+			</div> 
 			<table border=1 class="table table-striped table-hover table-responsive results">
 				<thead>
 				<tr>

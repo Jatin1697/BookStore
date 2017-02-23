@@ -54,7 +54,6 @@
 }
 
 .front {
-	background: url(http://covers.booktopia.com.au/9780757991301/harry-potter-and-the-philosopher-s-stone-selected-themes-from-the-motion-picture.jpg);
 	z-index: 2;
 }
 
@@ -111,4 +110,21 @@
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);
 }
 .info {
+}
+h3 {
+	padding-left: 20px;
+	padding-right: 20px;
+}
+h3:after {
+    content:' ';
+    display:block;
+    border:2px solid #4CAF50;
+    border-radius:4px;
+    padding-left: 20px;
+	padding-right: 20px;
+    -webkit-border-radius:4px;
+    -moz-border-radius:4px;
+    box-shadow:inset 0 1px 1px rgba(0, 0, 0, .05);
+    -webkit-box-shadow:inset 0 1px 1px rgba(0, 0, 0, .05);
+    -moz-box-shadow:inset 0 1px 1px rgba(0, 0, 0, .05);
 }

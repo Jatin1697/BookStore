@@ -35,13 +35,18 @@
     <br>
 	<div class="container-fluid">
 		<div class="row">
-			<div class="col-md-3 col-sm-4">
+			<h3>Deals of the Day</h3>
+		</div>
+		<div class="row">
+			<c:forEach items="${products }" var="product">
+				<div class="col-md-3 col-sm-4">
 				<div class="box">
 					<div class="row">
-						<div class="col-md-7 col-xs-6">
+						<div class="col-md-7 col-sm-8 col-xs-6">
 							<div class="flip-container" ontouchstart="this.classList.toggle('hover');">
 								<div class="flipper">
 									<div class="front">
+										<img src='<c:url value='/static/images/product/${product.product_name }.png'></c:url>' height="200px" width="150px;"/>
 									</div>
 									<div class="back">
 										<div class="btn-group">
@@ -53,103 +58,29 @@
 								</div>
 							</div>
 						</div>
-						<div class="col-md-5 col-xs-6">
+						<div class="col-md-5 col-sm-4 col-xs-6">
 							<div class="info">
-								<h4>Harry Potter and the philosophers stone</h4>
-								<p>J K Rowling</p>
-								<p>Rs 256</p>
+								<h4>${product.product_name }</h4>
+								<p>${product.author }</p>
+								<p>&#x20b9 ${product.price }</p>
 							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-			<div class="col-md-3 col-sm-4">
-				<div class="box">
-					<div class="row">
-						<div class="col-md-7 col-xs-6">
-							<div class="flip-container" ontouchstart="this.classList.toggle('hover');">
-								<div class="flipper">
-									<div class="front">
-									</div>
-									<div class="back">
-										<div class="btn-group">
-											<a href="#"><span id="icon"><i class="fa fa-shopping-cart" aria-hidden="true"></i></span>ADD TO CART</a>
-											<a href="#"><span id="icon"><i class="fa fa-heart" aria-hidden="true"></i></span>ADD TO WISHLIST</a>
-											<a href="#"><span id="icon"><i class="fa fa-shopping-cart" aria-hidden="true"></i></span>BUY NOW</a>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-5 col-xs-6">
-							<div class="info">
-								<h4>Harry Potter and the philosophers stone</h4>
-								<p>J K Rowling</p>
-								<p>Rs 256</p>
-							</div>
-						</div>
-					</div>
 				</div>
-			</div>
-			<div class="col-md-3 col-sm-4">
-				<div class="box">
-					<div class="row">
-						<div class="col-md-7 col-xs-6">
-							<div class="flip-container" ontouchstart="this.classList.toggle('hover');">
-								<div class="flipper">
-									<div class="front">
-									</div>
-									<div class="back">
-										<div class="btn-group">
-											<a href="#"><span id="icon"><i class="fa fa-shopping-cart" aria-hidden="true"></i></span>ADD TO CART</a>
-											<a href="#"><span id="icon"><i class="fa fa-heart" aria-hidden="true"></i></span>ADD TO WISHLIST</a>
-											<a href="#"><span id="icon"><i class="fa fa-shopping-cart" aria-hidden="true"></i></span>BUY NOW</a>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-5 col-xs-6">
-							<div class="info">
-								<h4>Harry Potter and the philosophers stone</h4>
-								<p>J K Rowling</p>
-								<p>Rs 256</p>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-3 col-sm-4">
-				<div class="box">
-					<div class="row">
-						<div class="col-md-7 col-xs-6">
-							<div class="flip-container" ontouchstart="this.classList.toggle('hover');">
-								<div class="flipper">
-									<div class="front">
-									</div>
-									<div class="back">
-										<div class="btn-group">
-											<a href="#"><span id="icon"><i class="fa fa-shopping-cart" aria-hidden="true"></i></span>ADD TO CART</a>
-											<a href="#"><span id="icon"><i class="fa fa-heart" aria-hidden="true"></i></span>ADD TO WISHLIST</a>
-											<a href="#"><span id="icon"><i class="fa fa-shopping-cart" aria-hidden="true"></i></span>BUY NOW</a>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-5 col-xs-6">
-							<div class="info">
-								<h4>Harry Potter and the philosophers stone</h4>
-								<p>J K Rowling</p>
-								<p>Rs 256</p>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
+			</c:forEach>
+		</div>
+		<div class="row">
+			<h3>Best Sellers</h3>
+		</div>
+		<div class="row">
+			<h3>Latest Books</h3>
+		</div>
+		<div class="row">
+			<h3>Upto 40% off</h3>
 		</div>
 	</div>
 	<br>
-    <a href='<c:url value='/logout'></c:url>'>logout</a>
+    
     <br>
     <%@ include file="footer.jsp" %>

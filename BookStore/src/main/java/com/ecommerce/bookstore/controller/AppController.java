@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.ecommerce.bookstore.DAO.ProductDao;
 import com.ecommerce.bookstore.DAO.UserDao;
 import com.ecommerce.bookstore.model.Users;
 import com.ecommerce.bookstore.service.MailService;
@@ -37,16 +38,28 @@ public class AppController {
 	@Autowired
 	MailService mailService;
 	
+	@Autowired
+	ProductDao productDao;
+	
 	Path path;
 	
 	@RequestMapping(value={"/","/home"} , method = RequestMethod.GET)
-	public String landingPage(ModelMap model){
+	public String landingPage(ModelMap model , HttpServletRequest request){
 		model.addAttribute("user", getPrincipal());
+		
+		String rootDirectory = request.getSession().getServletContext().getRealPath("/");
+		path = Paths.get(rootDirectory);
+		System.out.println(path);
+		model.addAttribute("products", productDao.getAllProducts());
+		model.addAttribute("path", path);
+		model.addAttribute("Home", "activ");
 		return "index";
 	}
 	
 	@RequestMapping(value="/login" , method=RequestMethod.GET)
-	public String goToLogin(){
+	public String goToLogin(ModelMap model){
+		
+		model.addAttribute("Login", "activ");
 		return "loginPage";
 		
 	}
@@ -66,6 +79,7 @@ public class AppController {
 	@RequestMapping(value="/registration", method=RequestMethod.GET)
 	public String goToRegistration(ModelMap model){
 		model.addAttribute("addUser", new Users());
+		model.addAttribute("Registration", "activ");
 		return "registrationPage";
 		
 	}
@@ -106,6 +120,7 @@ public class AppController {
     			model.addAttribute("address", user.getAddress());
     			return "registrationPage";
     		}
+    		
     	}
     	
     	userDao.addUser(user);
@@ -132,14 +147,16 @@ public class AppController {
     }
     
     @RequestMapping(value="/aboutUs", method = RequestMethod.GET)
-    public String aboutUsPage()
+    public String aboutUsPage(ModelMap model)
     {
+    	model.addAttribute("Aboutus", "activ");
     	return "about_us";
     }
     
     @RequestMapping(value="/contactUs", method = RequestMethod.GET)
-    public String contactUsPage()
+    public String contactUsPage(ModelMap model)
     {
+    	model.addAttribute("Contactus", "activ");
     	return "contact_us";
     }
     

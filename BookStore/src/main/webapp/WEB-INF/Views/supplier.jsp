@@ -27,7 +27,7 @@
 	<div class="container for_form">
 	<c:choose>
 		<c:when test="${edit }">
-			<form:form class="form-horizontal" action="edit-supplier-${supplier_id }" method="POST" commandName="update_supplier">
+			<form:form class="form-horizontal" action="edit-supplier-${supplier_id }" commandName="update_supplier"  method="POST">
 			<div class="form-group">
 			    <label for="supplier_name" class="col-sm-2 control-label">Name</label>
 			    <div class="col-sm-10">

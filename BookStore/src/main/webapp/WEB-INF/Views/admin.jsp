@@ -46,7 +46,7 @@
 										<c:out value="No"></c:out>
 									</c:otherwise>
 								</c:choose>
-								<a href='<c:url value='change-status-user-${user.user_id }'></c:url>' class="btn btn-danger">CHANGE</a>
+								<a href='<c:url value='/change-status-user-${user.user_id }'></c:url>' class="btn btn-danger">CHANGE</a>
 							</td>
 							</tr>
 						</c:forEach>

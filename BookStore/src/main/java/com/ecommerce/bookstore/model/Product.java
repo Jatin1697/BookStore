@@ -3,7 +3,6 @@ package com.ecommerce.bookstore.model;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -64,7 +63,7 @@ public class Product implements Serializable {
 		this.category = category;
 	}
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name="supplier_id")
 	private Supplier supplier;
 	

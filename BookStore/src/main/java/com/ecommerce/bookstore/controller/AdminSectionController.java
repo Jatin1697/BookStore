@@ -137,16 +137,19 @@ public class AdminSectionController {
     public String editProduct (@PathVariable int product_id , ModelMap model)
     {
     	Product product = productDao.getProduct(product_id);
-    	
+    	System.out.println("product_id" + product_id);
     	model.addAttribute("user", getPrincipal());
     	model.addAttribute("edit", true);
     	model.addAttribute("update_product",product);
     	
+    	model.addAttribute("product_id", product_id);
     	model.addAttribute("name", product.getProduct_name());
     	model.addAttribute("description", product.getDescription());
     	model.addAttribute("author", product.getAuthor());
     	model.addAttribute("price", product.getPrice());
     	model.addAttribute("quantity", product.getQuantity());
+    	model.addAttribute("Category_name", product.getCategory().getCategory_name());
+    	model.addAttribute("Supplier_name", product.getSupplier().getSupplier_name());
     	
     	List<Category> category = categoryDao.getAllCategory();
     	model.addAttribute("category", category);
@@ -158,7 +161,38 @@ public class AdminSectionController {
         model.addAttribute("products", products);
         
         model.addAttribute("no_of_products", productDao.getAllProducts().size());
+        
     	return "product";
+    }
+    
+    @RequestMapping(value="/edit-product-{product_id}" , method = RequestMethod.POST)
+    public String updateProduct(@ModelAttribute("update_product") Product product , HttpServletRequest request)
+    {
+    	category = categoryDao.getCategory(product.getCategory().getCategory_id());
+		supplier = supplierDao.getSupplier(product.getSupplier().getSupplier_id());
+		
+		product.setCategory(category);
+		product.setSupplier(supplier);
+		productDao.updateProduct(product);
+		
+		MultipartFile image = product.getProduct_image();
+    	String rootDirectory = request.getSession().getServletContext().getRealPath("/");
+    	
+    	path = Paths.get(rootDirectory + "/static/images/product/" + product.getProduct_name()+".png");
+    	System.out.println(path);
+    	if(image != null && !image.isEmpty())
+    	{
+    		try
+    		{
+    			image.transferTo(new File(path.toString()));
+    		}
+    		catch(Exception e)
+    		{
+    			e.printStackTrace();
+    		}
+    	}
+    	
+    	return "redirect:/handleProduct";
     }
     
     @RequestMapping(value="/delete-product-{product_id}", method = RequestMethod.GET)

@@ -5,7 +5,7 @@
 	<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> 
-	<script src="static/js/table_filter.js"></script>
+	<script type="text/javascript" src="static/js/table_filter.js"></script>
 </head>
 <style> 
 body{padding-top:70px;}

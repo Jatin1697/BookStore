@@ -5,6 +5,8 @@
 <html>
 <head>
     <title>RegistationPage</title>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <link href='//fonts.googleapis.com/css?family=Butcherman' rel='stylesheet'> 
@@ -96,7 +98,7 @@ var loadFile = function(event) {
 		       	</div>  
 		       	<div class="col-md-5 col-sm-12">
 						<div class="user_img">
-							<img src="http://placehold.it/250x300" id="output" height="300px"/>
+							<img src="http://placehold.it/250x300" id="output" height="300px" width="250px"/>
 						</div>
 				</div>    
 			</form:form>
