@@ -41,7 +41,14 @@ public class Product implements Serializable {
 	String author;
 	int price;
 	int quantity;
+	int discount=0;
 	
+	public int getDiscount() {
+		return discount;
+	}
+	public void setDiscount(int discount) {
+		this.discount = discount;
+	}
 	@Transient
 	MultipartFile product_image;
 	

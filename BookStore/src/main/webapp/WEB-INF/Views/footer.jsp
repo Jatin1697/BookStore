@@ -3,8 +3,8 @@
       	<div class="table_row">
       		<table class="col-md-3 col-sm-3">
 	      			<tr><th>Get to know us</th></tr>
-			      	<tr><td><a href="#">Contact us</a></td></tr>	
-			      	<tr><td><a href="#">About us</a></td></tr>
+			      	<tr><td><a href="<c:url value='/contactUs'></c:url>">Contact us</a></td></tr>	
+			      	<tr><td><a href="<c:url value='/aboutUs'></c:url>">About us</a></td></tr>
 			      	<tr><td><a href="#">Team cares</a></td></tr>
 			</table>
 			<table class="col-md-3 col-sm-3">
@@ -15,9 +15,9 @@
 			</table>
 			<table class="col-md-3 col-sm-3">
 	      			<tr><th>Connect with us</th></tr>
-			      	<tr><td><a href='https://facebook.com' target="_blank"><i class="fa fa-facebook-official" style="font-size:15px; color:blue"></i></a></td></tr>	
-			      	<tr><td><a href='https://google.co.in' target="_blank"><i class="fa fa-google-plus-square" style="font-size:15px; color:blue"></i></a></td></tr>
-			      	<tr><td><a href='https://twitter.com' target="_blank"><i class="fa fa-twitter-square" style="font-size:15px; color:blue"></i></a></td></tr>
+			      	<tr><td><a href='https://facebook.com' target="_blank"><i class="fa fa-facebook-official" style="font-size:20px; color:blue"></i></a></td></tr>	
+			      	<tr><td><a href='https://google.co.in' target="_blank"><i class="fa fa-google-plus-square" style="font-size:20px; color:blue"></i></a></td></tr>
+			      	<tr><td><a href='https://twitter.com' target="_blank"><i class="fa fa-twitter-square" style="font-size:20px; color:blue"></i></a></td></tr>
 			</table>
 			<table class="col-md-3 col-sm-3">
 	      			<tr><th>Read our policies</th></tr>
@@ -55,5 +55,8 @@ tbody tr td a:hover {
 	margin: auto;
 	height: 150px;
 } 
+th , td {
+	padding-bottom: 10px;
+}
 </style>
 </html>

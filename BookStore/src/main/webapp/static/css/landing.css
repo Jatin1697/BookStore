@@ -1,9 +1,11 @@
 .carousel-inner > .item > img,
 .carousel-inner > .item > a > img {
   width: 100%;
-  margin: auto;
+  margin: 0px;
 }
-
+.conatiner-fluid {
+	width: 100%;
+}
 .flip-container {
   -webkit-perspective: 1000;
   -moz-perspective: 1000;
@@ -110,6 +112,7 @@
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);
 }
 .info {
+
 }
 h3 {
 	padding-left: 20px;
@@ -127,4 +130,7 @@ h3:after {
     box-shadow:inset 0 1px 1px rgba(0, 0, 0, .05);
     -webkit-box-shadow:inset 0 1px 1px rgba(0, 0, 0, .05);
     -moz-box-shadow:inset 0 1px 1px rgba(0, 0, 0, .05);
+}
+.info p {
+	margin: 5px;
 }

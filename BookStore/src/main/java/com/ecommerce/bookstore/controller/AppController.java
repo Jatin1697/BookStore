@@ -18,10 +18,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.ecommerce.bookstore.DAO.CategoryDao;
 import com.ecommerce.bookstore.DAO.ProductDao;
 import com.ecommerce.bookstore.DAO.UserDao;
 import com.ecommerce.bookstore.model.Users;
@@ -41,18 +43,19 @@ public class AppController {
 	@Autowired
 	ProductDao productDao;
 	
+	@Autowired
+	CategoryDao categoryDao;
+	
 	Path path;
 	
 	@RequestMapping(value={"/","/home"} , method = RequestMethod.GET)
 	public String landingPage(ModelMap model , HttpServletRequest request){
 		model.addAttribute("user", getPrincipal());
 		
-		String rootDirectory = request.getSession().getServletContext().getRealPath("/");
-		path = Paths.get(rootDirectory);
-		System.out.println(path);
+		model.addAttribute("categories", categoryDao.getAllCategory());
 		model.addAttribute("products", productDao.getAllProducts());
-		model.addAttribute("path", path);
 		model.addAttribute("Home", "activ");
+		
 		return "index";
 	}
 	
@@ -158,6 +161,24 @@ public class AppController {
     {
     	model.addAttribute("Contactus", "activ");
     	return "contact_us";
+    }
+    
+    @RequestMapping(value="/displayProduct/{categoryId}" , method = RequestMethod.GET)
+    public String displayProduct(ModelMap model , @PathVariable("categoryId") int categoryId )
+    {
+    	model.addAttribute("DisplayProduct", "activ");
+    	model.addAttribute("categories", categoryDao.getAllCategory());
+    	model.addAttribute("books",productDao.getProductByCategory(categoryId));
+    	return "displayProduct";
+    }
+    
+    @RequestMapping(value="/allProduct" , method=RequestMethod.GET)
+    public String allProducts(ModelMap model)
+    {
+    	model.addAttribute("DisplayProduct","activ");
+    	model.addAttribute("categories", categoryDao.getAllCategory());
+    	model.addAttribute("books", productDao.getAllProducts());
+    	return "displayProduct";
     }
     
     @RequestMapping(value="/logout", method = RequestMethod.GET)

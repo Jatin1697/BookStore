@@ -24,6 +24,7 @@
 }
 .product_img {
 	margin: 15px;
+	margin-left: 30px;
 	outline: 2px solid #111111;
 	height: 200px;
 	width: 150px;
@@ -47,46 +48,54 @@ var loadFile = function(event) {
 		<c:choose>
 			<c:when test="${edit}">
 				<form:form class="form-horizontal" action="edit-product-${product_id }" commandName="update_product" enctype="multipart/form-data"  method="POST">
-					<div class="col-md-7">
+					<div class="col-md-5">
 						<div class="form-group">
-						    <label for="product_name" class="col-sm-2 control-label">Name</label>
-						    <div class="col-sm-10">
+						    <label for="product_name" class="col-sm-4 control-label">Name</label>
+						    <div class="col-sm-8">
 						      <input type="text" class="form-control" value="${name }" id="product_name" name="product_name" placeholder="Product">
 						    </div>
 						  </div>
 						  <div class="form-group">
-						    <label for="author" class="col-sm-2 control-label">Author</label>
-						    <div class="col-sm-10">
+						    <label for="author" class="col-sm-4 control-label">Author</label>
+						    <div class="col-sm-8">
 						      <input type="text" class="form-control" value="${author }" id="author" name="author" placeholder="Author Name">
 						    </div>
 						  </div>
 						  <div class="form-group">
-						    <label for="description" class="col-sm-2 control-label">Description</label>
-						    <div class="col-sm-10">
+						    <label for="description" class="col-sm-4 control-label">Description</label>
+						    <div class="col-sm-8">
 						      <textarea rows="3" class="form-control" id="description" name="description" placeholder="Description"><c:out value="${description }"></c:out></textarea>
 						    </div>
 						  </div>
 						  <div class="form-group">
-						    <label for="price" class="col-sm-2 control-label">Price</label>
-						    <div class="col-sm-10">
+						    <label for="price" class="col-sm-4 control-label">Price</label>
+						    <div class="col-sm-8">
 						      <input type="text" class="form-control" value="${price }" id="price" name="price" placeholder="Price">
 						    </div>
 						  </div>
 						  <div class="form-group">
-						    <label for="quantity" class="col-sm-2 control-label">Quantity</label>
-						    <div class="col-sm-10">
+						    <label for="quantity" class="col-sm-4 control-label">Quantity</label>
+						    <div class="col-sm-8">
 						      <input type="text" class="form-control" value="${quantity }" id="quantity" name="quantity" placeholder="Quantity">
 						    </div>
 						  </div>
+						</div>
+						<div class="col-md-4">
 						  <div class="form-group">
-						    <label for="product_image" class="col-sm-2 control-label">Image</label>
-						    <div class="col-sm-10">
+						    <label for="discount" class="col-sm-2 control-label col-md-4">Discount</label>
+						    <div class="col-sm-10 col-md-8">
+						      <input type="text" class="form-control" id="discount" name="discount" placeholder="0-100">
+						    </div>
+						  </div>
+						  <div class="form-group">
+						    <label for="product_image" class="col-sm-4 control-label">Image</label>
+						    <div class="col-sm-10 col-md-8">
 						      <input type="file" class="form-control" value="" id="product_image" name="product_image" onchange="loadFile(event)">
 						    </div>
 						  </div>
 						  <div class="form-group" class="form-control" >
-						  	<label for="category" class="col-sm-2 control-label">Category</label>
-						  	<div class="col-sm-10 col-md-6">
+						  	<label for="category" class="col-sm-4 control-label">Category</label>
+						  	<div class="col-sm-10 col-md-8">
 						  		<div class="form-control">
 									<form:select path="category.category_id">
 										<form:options items="${category }" itemValue="category_id" itemLabel="category_name" />
@@ -95,8 +104,8 @@ var loadFile = function(event) {
 							</div>
 						  </div>
 						  <div class="form-group" class="form-control" >
-						  	<label for="supplier" class="col-sm-2 control-label">Supplier</label>
-						  	<div class="col-sm-10 col-md-6">
+						  	<label for="supplier" class="col-sm-4 control-label">Supplier</label>
+						  	<div class="col-sm-10 col-md-8">
 						  		<div class="form-control">
 									<form:select path="supplier.supplier_id">
 										<form:options items="${suppliers }" itemValue="supplier_id" itemLabel="supplier_name" />
@@ -104,16 +113,18 @@ var loadFile = function(event) {
 								</div>
 							</div>
 						  </div>
-						  <div class="form-group" >
-						    <div class="col-sm-offset-2 col-sm-10">
+						  <div class="form-group row" >
+						    <div class="col-sm-offset-2 col-sm-5">
 						      <input type="submit" class="btn btn-success" value="UPDATE">
+						    </div>
+						    <div class="col-sm-5">
 						      <input class="btn btn-warning" type="reset">
 						    </div>
 						  </div>
 					  </div>
-					  <div class="col-md-5">
+					  <div class="col-md-3">
 						  	<div class="product_img">
-								<img src="http://placehold.it/150x200" id="output" height="200px" width="200px;"/>
+								<img src="http://placehold.it/150x200" id="output" height="200px" width="150px;"/>
 							</div>
 					  </div>
 				 </form:form>
@@ -149,6 +160,12 @@ var loadFile = function(event) {
 						    <label for="quantity" class="col-sm-2 control-label col-md-2">Quantity</label>
 						    <div class="col-sm-10 col-md-6">
 						      <input type="text" class="form-control" id="quantity" name="quantity" placeholder="Quantity">
+						    </div>
+						  </div>
+						  <div class="form-group">
+						    <label for="discount" class="col-sm-2 control-label col-md-2">Discount</label>
+						    <div class="col-sm-10 col-md-6">
+						      <input type="text" class="form-control" id="discount" name="discount" placeholder="0-100">
 						    </div>
 						  </div>
 						  <div class="form-group">
