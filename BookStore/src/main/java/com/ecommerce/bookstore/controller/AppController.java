@@ -195,10 +195,12 @@ public class AppController {
     }
     
     @RequestMapping(value="/updatingAccount-{user_id}" , method = RequestMethod.POST)
-    public String updateAccountDetails(@ModelAttribute("updateUser") Users user)
+    public String updateAccountDetails(@ModelAttribute("updateUser") Users user , ModelMap model)
     {
+    	user.setActive(true);
     	userDao.updateUser(user);
-    	return "redirect:/account";
+    	model.addAttribute("msg", "Details have been successsfully updated");
+    	return "redirect:/home";
     }
     
     @RequestMapping(value="/logout", method = RequestMethod.GET)

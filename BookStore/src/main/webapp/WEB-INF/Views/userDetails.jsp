@@ -6,6 +6,8 @@
 		</div>
 		<div class="col-md-6">
 			<form:form action="updatingAccount-${updateUser.user_id }" method="POST" commandName="updateUser">
+			<input type="hidden" name="username" value="${updateUser.username }">
+			<input type="hidden" name="password" value="${updateUser.password }">
 			<div class="row">
             	<div class="col-md-4">
                 	<div class="form-group">
@@ -42,6 +44,7 @@
                                     	<button type="submit" class="btn btn-info btn-fill pull-right">Update Profile</button>
                                     </div>                    
 		</form:form>
+		<p>${msg }</p>
 		</div>
 	</div>
 </div>
