@@ -3,7 +3,9 @@ package com.ecommerce.bookstore.DAOImpl;
 
 import java.util.List;
 
+import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -59,6 +61,13 @@ public class UserDaoImpl implements UserDao{
 	public List<Users> getUsersOnly() {
 		// TODO Auto-generated method stub
 		return (List<Users>) sessionFactory.getCurrentSession().createQuery("from Users where role_id = 3").list();
+	}
+
+	public Users getUserByUsername(String username) {
+		// TODO Auto-generated method stub
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Users.class);
+		criteria.add(Restrictions.like("username", username));
+		return (Users) criteria.uniqueResult();
 	}
 
 }

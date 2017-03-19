@@ -1,6 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" isELIgnored="false"
-    pageEncoding="ISO-8859-1"%>
 <%@ include file="header.jsp" %>
+	
 	<div class="container">
 		<div class="row">
 			<c:forEach items="${books }" var="book">

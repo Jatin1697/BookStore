@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.ecommerce.bookstore.DAO.CategoryDao;
@@ -153,6 +154,7 @@ public class AppController {
     public String aboutUsPage(ModelMap model)
     {
     	model.addAttribute("Aboutus", "activ");
+    	model.addAttribute("categories", categoryDao.getAllCategory());
     	return "about_us";
     }
     
@@ -160,13 +162,14 @@ public class AppController {
     public String contactUsPage(ModelMap model)
     {
     	model.addAttribute("Contactus", "activ");
+    	model.addAttribute("categories", categoryDao.getAllCategory());
     	return "contact_us";
     }
     
-    @RequestMapping(value="/displayProduct/{categoryId}" , method = RequestMethod.GET)
+    @RequestMapping(value="/displayProduct-{categoryId}" , method = RequestMethod.GET)
     public String displayProduct(ModelMap model , @PathVariable("categoryId") int categoryId )
     {
-    	model.addAttribute("DisplayProduct", "activ");
+    	model.addAttribute("genre", "activ");
     	model.addAttribute("categories", categoryDao.getAllCategory());
     	model.addAttribute("books",productDao.getProductByCategory(categoryId));
     	return "displayProduct";
@@ -179,6 +182,23 @@ public class AppController {
     	model.addAttribute("categories", categoryDao.getAllCategory());
     	model.addAttribute("books", productDao.getAllProducts());
     	return "displayProduct";
+    }
+    
+    @RequestMapping(value="/account" , method = RequestMethod.GET)
+    public String youtAccount(@RequestParam("username") String username , ModelMap model)
+    {
+    	model.addAttribute("categories", categoryDao.getAllCategory());
+    	Users user = userDao.getUserByUsername(getPrincipal());
+    	model.addAttribute("updateUser", user);
+    	
+    	return "userDetails";
+    }
+    
+    @RequestMapping(value="/updatingAccount-{user_id}" , method = RequestMethod.POST)
+    public String updateAccountDetails(@ModelAttribute("updateUser") Users user)
+    {
+    	userDao.updateUser(user);
+    	return "redirect:/account";
     }
     
     @RequestMapping(value="/logout", method = RequestMethod.GET)

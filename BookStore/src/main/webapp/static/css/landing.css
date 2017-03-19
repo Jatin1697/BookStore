@@ -3,9 +3,6 @@
   width: 100%;
   margin: 0px;
 }
-.conatiner-fluid {
-	width: 100%;
-}
 .flip-container {
   -webkit-perspective: 1000;
   -moz-perspective: 1000;

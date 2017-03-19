@@ -57,13 +57,13 @@
           <li class="${Home}"><a href='<c:url value='/home'></c:url>'><span class="glyphicon glyphicon-home"></span>  Home</a></li>
           <li class="${Aboutus}"><a href='<c:url value="/aboutUs"></c:url>'>About Us</a></li>
           <li class="${Contactus }"><a href='<c:url value="/contactUs"></c:url>'>Contact Us</a></li>
-          <li class="dropdown"><a class="dropbtn" href='<c:url value='/allProduct'></c:url>'><span class="pro">Genre <span class="caret"></span></span></a>
+          <li class="dropdown ${genre}"><a class="dropbtn" href='<c:url value='/allProduct'></c:url>'><span class="pro">Genre <span class="caret"></span></span></a>
             <div class="dropdown-menu">
           		<div class="row">
               	<c:forEach items="${categories }" var="category">
 	              	<div class="col-md-4 nopadding">
 	              		<ul>
-	              			<li><a href='<c:url value='displayProduct/${category.category_id }'></c:url>'>${category.category_name }</a></li>
+	              			<li><a href='<c:url value='displayProduct-${category.category_id }'></c:url>'>${category.category_name }</a></li>
 	              		</ul>
 	              	</div>
               	</c:forEach>
@@ -80,7 +80,7 @@
          <c:if test="${pageContext.request.userPrincipal.name !=null}">
 	       <li class="${Contactus } dropdown"><a class="dropbtn" href='<c:url value='/home'></c:url>'>Welcome : ${pageContext.request.userPrincipal.name} <span class="caret"></span></a>
 	       	<ul class="dropdown-menu" style="width:150px">
-	       		<li><a>your account</a></li>
+	       		<li><a href='<c:url value='/account?username=${user}'></c:url>'>your account</a></li>
 	       		<li><a>your orders</a></li>
 	       		<li><a>your cart</a></li>
 	       	</ul>
