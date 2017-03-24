@@ -195,12 +195,39 @@ public class AppController {
     }
     
     @RequestMapping(value="/updatingAccount-{user_id}" , method = RequestMethod.POST)
-    public String updateAccountDetails(@ModelAttribute("updateUser") Users user , ModelMap model)
+    public String updateAccountDetails(@ModelAttribute("updateUser") Users user , ModelMap model , HttpServletRequest request)
     {
     	user.setActive(true);
     	userDao.updateUser(user);
-    	model.addAttribute("msg", "Details have been successsfully updated");
+    	
+    	MultipartFile image = user.getUser_image();
+    	String rootDirectory = request.getSession().getServletContext().getRealPath("/");
+    	
+    	path = Paths.get(rootDirectory + "/static/images/user/" + user.getUsername()+".png");
+    	System.out.println(path);
+    	if(image != null && !image.isEmpty())
+    	{
+    		try
+    		{
+    			image.transferTo(new File(path.toString()));
+    		}
+    		catch(Exception e)
+    		{
+    			e.printStackTrace();
+    		}
+    	}
+    	
+    	model.addAttribute("msg", "Details have been successfully updated");
     	return "redirect:/home";
+    }
+    
+    @RequestMapping(value="/cart", method = RequestMethod.GET)
+    public String shoppingCart(@RequestParam("username") String username , ModelMap model)
+    {
+    	model.addAttribute("categories", categoryDao.getAllCategory());
+    	Users user = userDao.getUserByUsername(getPrincipal());
+    	model.addAttribute("name", user.getName());
+    	return "cart";
     }
     
     @RequestMapping(value="/logout", method = RequestMethod.GET)

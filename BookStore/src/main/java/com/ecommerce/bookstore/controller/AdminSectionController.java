@@ -86,6 +86,7 @@ public class AdminSectionController {
     @RequestMapping(value = "/handleProduct", method = RequestMethod.GET)
     public String productPage(ModelMap model) {
         model.addAttribute("user", getPrincipal());
+        model.addAttribute("edit", false);
     	model.addAttribute("new_product",new Product());
     	
     	List<Category> category = categoryDao.getAllCategory();
@@ -143,13 +144,6 @@ public class AdminSectionController {
     	model.addAttribute("update_product",product);
     	
     	model.addAttribute("product_id", product_id);
-    	model.addAttribute("name", product.getProduct_name());
-    	model.addAttribute("description", product.getDescription());
-    	model.addAttribute("author", product.getAuthor());
-    	model.addAttribute("price", product.getPrice());
-    	model.addAttribute("quantity", product.getQuantity());
-    	model.addAttribute("Category_name", product.getCategory().getCategory_name());
-    	model.addAttribute("Supplier_name", product.getSupplier().getSupplier_name());
     	
     	List<Category> category = categoryDao.getAllCategory();
     	model.addAttribute("category", category);
@@ -224,7 +218,6 @@ public class AdminSectionController {
     	Category category = categoryDao.getCategory(category_id);
     	model.addAttribute("category_id", category_id);
     	model.addAttribute("update_category", category);
-    	model.addAttribute("categoryName", category.getCategory_name());
     	model.addAttribute("edit", true);
     	
     	List<Users> users = userDao.getUsersOnly();
@@ -280,10 +273,6 @@ public class AdminSectionController {
     	model.addAttribute("edit", true);
     	model.addAttribute("update_supplier" , supplier1);
     	model.addAttribute("suppliers", supplierDao.getAllSuppliers());
-    	model.addAttribute("name", supplier1.getSupplier_name());
-    	model.addAttribute("address", supplier1.getSupplier_address());
-    	model.addAttribute("email", supplier1.getSupplier_email());
-    	model.addAttribute("mob_no", supplier1.getSupplier_mob_no());
     	
     	return "supplier";
     }

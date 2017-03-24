@@ -31,25 +31,25 @@
 			<div class="form-group">
 			    <label for="supplier_name" class="col-sm-2 control-label">Name</label>
 			    <div class="col-sm-10">
-			      <input type="text" class="form-control" value="${name }" id="supplier_name" name="supplier_name" placeholder="Enter Name">
+			      <input type="text" class="form-control" value="${update_supplier.supplier_name }" id="supplier_name" name="supplier_name" placeholder="Enter Name">
 			    </div>
 			  </div>
 			  <div class="form-group">
 			    <label for="supplier_address" class="col-sm-2 control-label">Address</label>
 			    <div class="col-sm-10">
-			      <textarea rows="3" class="form-control" id="supplier_address" name="supplier_address" placeholder="Enter Address"><c:out value="${address }"></c:out></textarea>
+			      <textarea rows="3" class="form-control" id="supplier_address" name="supplier_address" placeholder="Enter Address"><c:out value="${update_supplier.supplier_address }"></c:out></textarea>
 			    </div>
 			  </div>
 			  <div class="form-group">
 			    <label for="supplier_email" class="col-sm-2 control-label">Email</label>
 			    <div class="col-sm-10">
-			      <input type="email" class="form-control" value="${email }" id="supplier_email" name="supplier_email" placeholder="Email">
+			      <input type="email" class="form-control" value="${update_supplier.supplier_email }" id="supplier_email" name="supplier_email" placeholder="Email">
 			    </div>
 			  </div>
 			  <div class="form-group">
 			    <label for="supplier_mob_no" class="col-sm-2 control-label">Mobile No</label>
 			    <div class="col-sm-10">
-			      <input type="tel" class="form-control" value="${mob_no }" id="supplier_mob_no" name="supplier_mob_no" placeholder="Enter Mobile No">
+			      <input type="tel" class="form-control" value="${update_supplier.supplier_mob_no }" id="supplier_mob_no" name="supplier_mob_no" placeholder="Enter Mobile No">
 			    </div>
 			  </div>
 			  <div class="form-group">

@@ -65,7 +65,7 @@
 					<div class="panel-body">
 						<form:form action="edit-category-${category_id}" commandName="update_category" method="POST">
 							<div class="input-group">
-							<input type="text" name="category_name" id="category_name" value="${categoryName }" class="form-control"><br>
+							<input type="text" name="category_name" id="category_name" value="${update_category.category_name }" class="form-control"><br>
 							<span class="input-group-btn"><input type="submit" value="UPDATE" class="btn btn-success"></span>
 							</div>
 						</form:form>
