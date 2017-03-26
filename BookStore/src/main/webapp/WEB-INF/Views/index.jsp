@@ -51,7 +51,7 @@
 									</div>
 									<div class="back">
 										<div class="btn-group">
-											<a href="#"><span id="icon"><i class="fa fa-shopping-cart" aria-hidden="true"></i></span>ADD TO CART</a>
+											<a href='<c:url value='/addCartItem?book=${product.product_name }'></c:url>'><span id="icon"><i class="fa fa-shopping-cart" aria-hidden="true"></i></span>ADD TO CART</a>
 											<a href="#"><span id="icon"><i class="fa fa-heart" aria-hidden="true"></i></span>ADD TO WISHLIST</a>
 											<a href="#"><span id="icon"><i class="fa fa-shopping-cart" aria-hidden="true"></i></span>BUY NOW</a>
 										</div>

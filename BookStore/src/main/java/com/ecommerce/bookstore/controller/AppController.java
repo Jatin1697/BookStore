@@ -221,15 +221,6 @@ public class AppController {
     	return "redirect:/home";
     }
     
-    @RequestMapping(value="/cart", method = RequestMethod.GET)
-    public String shoppingCart(@RequestParam("username") String username , ModelMap model)
-    {
-    	model.addAttribute("categories", categoryDao.getAllCategory());
-    	Users user = userDao.getUserByUsername(getPrincipal());
-    	model.addAttribute("name", user.getName());
-    	return "cart";
-    }
-    
     @RequestMapping(value="/logout", method = RequestMethod.GET)
     public String logoutPage (HttpServletRequest request, HttpServletResponse response) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
