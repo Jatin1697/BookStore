@@ -1,5 +1,7 @@
 package com.ecommerce.bookstore.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -48,11 +50,54 @@ public class CartController {
     		return "redirect:/login";
     	}
     	
-    	Cart cart = new Cart();
     	Product product = productDao.getProductByName(book);
+    	
+    	if(product.getQuantity() == 0)
+    	{
+			model.addAttribute("msg", "This product is out of stock from this seller. Check another seller to buy this product");
+			model.addAttribute("username", getPrincipal());
+			return "redirect:/cart";
+    	}
+    	List<Cart> list = cartDao.getCartItems(getPrincipal());
+    	System.out.println(list.size());
+    	for(int i=0; i<list.size(); i++)
+    	{
+    		if(list.get(i).getProduct_name().equals(book))
+    		{
+    			int j=1; //variable created to increase the quantity of product in cart by 1
+    			
+    			Cart cart = cartDao.getCart(list.get(i).getCart_id());
+    			if(cart.getQuantity() == product.getQuantity())
+    			{
+    				j=0;
+    				model.addAttribute("msg", "This seller has only "+product.getQuantity()+" of these available. Check another seller to buy more");
+    			}
+    			cart.setQuantity(cart.getQuantity()+j);
+    			cart.setProduct_name(book);
+    	    	
+    	    	// set the price after discount
+    	    	int price = product.getPrice() - product.getDiscount() * product.getPrice() / 100;
+    	    	
+    	    	cart.setPrice(price);
+    	    	cart.setTotal_price(price*cart.getQuantity());
+    	    	cart.setUsername(getPrincipal());
+    	    	model.addAttribute("username", getPrincipal());
+    			cartDao.updateCart(cart);
+    			
+    			return "redirect:/cart";
+    		}
+    	}
+    	
+    	Cart cart = new Cart();
+    	
     	cart.setProduct_name(book);
-    	cart.setPrice(product.getPrice());
+    	
+    	// set the price after discount; 
+    	int price = product.getPrice() - product.getDiscount() * product.getPrice() / 100;
+    	cart.setPrice(price);
+    	
     	cart.setQuantity(1);
+    	cart.setTotal_price(price);
     	cart.setUsername(getPrincipal());
     	model.addAttribute("username", getPrincipal());
     	

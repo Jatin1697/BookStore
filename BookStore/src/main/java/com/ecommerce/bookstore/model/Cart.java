@@ -30,6 +30,7 @@ public class Cart implements Serializable{
 	String product_name;
 	int quantity;
 	double price;
+	double total_price;
 	
 	public int getCart_id() {
 		return cart_id;
@@ -60,6 +61,12 @@ public class Cart implements Serializable{
 	}
 	public void setPrice(double price) {
 		this.price = price;
+	}
+	public double getTotal_price() {
+		return total_price;
+	}
+	public void setTotal_price(double total_price) {
+		this.total_price = total_price;
 	}
 	
 	
