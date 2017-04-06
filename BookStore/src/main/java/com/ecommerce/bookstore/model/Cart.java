@@ -28,6 +28,7 @@ public class Cart implements Serializable{
 	@Column
 	String username;
 	String product_name;
+	String author;
 	int quantity;
 	double price;
 	double total_price;
@@ -67,6 +68,12 @@ public class Cart implements Serializable{
 	}
 	public void setTotal_price(double total_price) {
 		this.total_price = total_price;
+	}
+	public String getAuthor() {
+		return author;
+	}
+	public void setAuthor(String author) {
+		this.author = author;
 	}
 	
 	

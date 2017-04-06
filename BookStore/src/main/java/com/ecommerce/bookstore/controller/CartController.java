@@ -7,9 +7,11 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.ecommerce.bookstore.DAO.CartDao;
 import com.ecommerce.bookstore.DAO.CategoryDao;
@@ -34,18 +36,20 @@ public class CartController {
 	CartDao cartDao;
 
     @RequestMapping(value="/cart", method = RequestMethod.GET)
-    public String shoppingCart(@RequestParam("username") String username , ModelMap model)
+    public String shoppingCart(@RequestParam("username") String username , ModelMap model)// , @RequestParam("msg") String msg )
     {
+    	model.addAttribute("user", getPrincipal());
 		model.addAttribute("categories", categoryDao.getAllCategory());
     	model.addAttribute("products",cartDao.getCartItems(username));
+    	//model.addAttribute("msg", msg);
     	
     	return "cart";
     }
     
     @RequestMapping(value="addCartItem" , method = RequestMethod.GET)
-    public String addProductToCart(@RequestParam("book") String book , ModelMap model)
+    public String addProductToCart(@RequestParam("book") String book , ModelMap model)// , RedirectAttributes redirectAttributes)
     {
-    	if(getPrincipal() == "anonymousUser")
+    	if(getPrincipal() == "anonymousUser" || getPrincipal() == null )
     	{
     		return "redirect:/login";
     	}
@@ -54,8 +58,9 @@ public class CartController {
     	
     	if(product.getQuantity() == 0)
     	{
-			model.addAttribute("msg", "This product is out of stock from this seller. Check another seller to buy this product");
 			model.addAttribute("username", getPrincipal());
+			//model.addAttribute("msg",  "This product is out of stock from this seller. Check another seller to buy this product");
+			//redirectAttributes.addFlashAttribute("msg", "This product is out of stock from this seller. Check another seller to buy this product");
 			return "redirect:/cart";
     	}
     	List<Cart> list = cartDao.getCartItems(getPrincipal());
@@ -70,7 +75,8 @@ public class CartController {
     			if(cart.getQuantity() == product.getQuantity())
     			{
     				j=0;
-    				model.addAttribute("msg", "This seller has only "+product.getQuantity()+" of these available. Check another seller to buy more");
+    				//model.addAttribute("msg","This seller has only "+product.getQuantity()+" of these available. Check another seller to buy more");
+    				//redirectAttributes.addFlashAttribute("msg", "This seller has only "+product.getQuantity()+" of these available. Check another seller to buy more");
     			}
     			cart.setQuantity(cart.getQuantity()+j);
     			cart.setProduct_name(book);
@@ -80,6 +86,7 @@ public class CartController {
     	    	
     	    	cart.setPrice(price);
     	    	cart.setTotal_price(price*cart.getQuantity());
+    	    	cart.setAuthor(product.getAuthor());
     	    	cart.setUsername(getPrincipal());
     	    	model.addAttribute("username", getPrincipal());
     			cartDao.updateCart(cart);
@@ -98,11 +105,22 @@ public class CartController {
     	
     	cart.setQuantity(1);
     	cart.setTotal_price(price);
+    	cart.setAuthor(product.getAuthor());
     	cart.setUsername(getPrincipal());
     	model.addAttribute("username", getPrincipal());
     	
     	cartDao.addCart(cart);
     	return "redirect:/cart";
+    }
+    
+    @RequestMapping(value="remove-cart-{cart_id}", method = RequestMethod.GET)
+    public String removeCart(@PathVariable int cart_id , ModelMap model)
+    {
+    	cartDao.deleteCart(cartDao.getCart(cart_id));
+    	model.addAttribute("user", getPrincipal());
+		model.addAttribute("categories", categoryDao.getAllCategory());
+    	model.addAttribute("products",cartDao.getCartItems(getPrincipal()));
+    	return "cart";
     }
     
     private String getPrincipal(){

@@ -52,6 +52,12 @@ public class AdminSectionController {
 	
 	@RequestMapping(value = "/admin", method = RequestMethod.GET)
     public String adminPage(ModelMap model) {
+		
+		if(getPrincipal() == "anonymousUser")
+    	{
+    		return "redirect:/login";
+    	}
+		
         model.addAttribute("user", getPrincipal());
       
         List<Users> users = userDao.getUsersOnly();

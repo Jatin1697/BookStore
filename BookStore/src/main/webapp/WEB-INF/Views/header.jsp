@@ -40,9 +40,11 @@
           	<div class="cart-list">
 	          	<c:if test="${pageContext.request.userPrincipal.name == null }">
 	          		<c:set var="cart_url" value="/login"></c:set>
+	          		<c:set var="wishlist_url" value="/login"></c:set>
 	          	</c:if>
 	          	<c:if test="${pageContext.request.userPrincipal.name != null }">
 	          		<c:set var="cart_url" value="/cart?username=${user }"></c:set>
+	          		<c:set var="wishlist_url" value="/wishlist?username=${user }"></c:set>
 	          	</c:if>
 	            <a href='<c:url value='${cart_url }'></c:url>'><span class="fa fa-shopping-cart" style="font-size: 25px; color:#585858"></span></a>
 	            <span class="item"><b>CART    0</b></span>
@@ -50,7 +52,7 @@
           </div>
           <div class="col-md-2" style="padding-top: 35px">
           	<div class="cart-list">
-            	<a href="#"><img src='<c:url value='static/images/wishlist-pro-icon.jpg'></c:url>' width='30px' height='30px' /></a>
+            	<a href='<c:url value='${wishlist_url }'></c:url>'><img src='<c:url value='static/images/wishlist-pro-icon.jpg'></c:url>' width='30px' height='30px' /></a>
             	<span class="item"><b>WISHLIST    0</b></span>
             </div>
           </div>
