@@ -23,7 +23,7 @@ public class Wishlist implements Serializable{
 
 	@Id
 	@Column
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	int wishlist_id;
 	@Column
 	String username;

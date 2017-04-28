@@ -11,8 +11,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ecommerce.bookstore.DAO.CategoryDao;
+import com.ecommerce.bookstore.DAO.ProductDao;
 import com.ecommerce.bookstore.DAO.UserDao;
 import com.ecommerce.bookstore.DAO.WishlistDao;
+import com.ecommerce.bookstore.model.Product;
+import com.ecommerce.bookstore.model.Wishlist;
 
 @Controller
 public class WishlistController {
@@ -25,6 +28,9 @@ public class WishlistController {
 	
 	@Autowired
 	WishlistDao wishlistDao;
+	
+	@Autowired
+	ProductDao productDao;
 
 	@RequestMapping(value="/wishlist" , method = RequestMethod.GET)
 	public String wishlist(@RequestParam("username") String username , ModelMap model)
@@ -34,6 +40,26 @@ public class WishlistController {
     	model.addAttribute("products",wishlistDao.getWishlistItems(username));
     	
 		return "wishlist";
+	}
+	
+	@RequestMapping(value="/addWishlistItem" , method = RequestMethod.GET)
+	public String addItemToWishlist(@RequestParam("book") String book , ModelMap model)
+	{
+		if(getPrincipal() == "anonymousUser" || getPrincipal() == null )
+    	{
+    		return "redirect:/login";
+    	}
+		
+		System.out.println(book);
+		Product product = productDao.getProductByName(book);
+		Wishlist wishlist = new Wishlist();
+		wishlist.setAuthor(product.getAuthor());
+		wishlist.setProduct_name(book);
+		wishlist.setDescription(product.getDescription());
+		wishlist.setUsername(getPrincipal());
+		wishlistDao.addWishlist(wishlist);
+		model.addAttribute("username", getPrincipal());
+		return "redirect:/wishlist";
 	}
 	
 	@RequestMapping(value="remove-wishlist-{wishlist_id}", method = RequestMethod.GET)

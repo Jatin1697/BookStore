@@ -18,13 +18,6 @@ import org.springframework.web.multipart.MultipartFile;
 @Component
 @Table(name="Product")
 public class Product implements Serializable {
-	
-	public String getAuthor() {
-		return author;
-	}
-	public void setAuthor(String author) {
-		this.author = author;
-	}
 	/**
 	 * 
 	 */
@@ -139,5 +132,12 @@ public class Product implements Serializable {
 	 */
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
+	}
+	
+	public String getAuthor() {
+		return author;
+	}
+	public void setAuthor(String author) {
+		this.author = author;
 	}
 }

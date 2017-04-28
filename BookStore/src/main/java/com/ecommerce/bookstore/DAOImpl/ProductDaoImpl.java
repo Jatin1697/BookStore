@@ -44,22 +44,25 @@ public class ProductDaoImpl implements ProductDao{
 	@Override
 	public List<Product> getAllProducts() {
 		// TODO Auto-generated method stub
-		return (List<Product>) sessionFactory.getCurrentSession().createQuery("from Product").list();
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Product.class);
+		return (List<Product>) criteria.list();
 	}
 
 	@Override
 	public Product getProduct(int product_id) {
 		// TODO Auto-generated method stub
-		return (Product) sessionFactory.getCurrentSession().get("product_id", product_id);
+		Criteria criteria  = sessionFactory.getCurrentSession().createCriteria(Product.class);
+		criteria.add(Restrictions.like("product_id", product_id));
+		return (Product)criteria.uniqueResult();
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Product> getProductByCategory(int categoryId) {
 		// TODO Auto-generated method stub
-		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Product.class);
+		Criteria criteria  = sessionFactory.getCurrentSession().createCriteria(Product.class);
 		criteria.add(Restrictions.like("category_id", categoryId));
-		return (List<Product>) criteria.list();
+		return (List<Product>)criteria.list();
 	}
 
 	@Override

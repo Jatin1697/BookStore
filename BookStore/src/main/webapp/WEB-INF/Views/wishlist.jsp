@@ -44,7 +44,7 @@ h4:after {
 					<p>${product.description }</p>
 				</div>
 				<div class="col-md-1">
-					<a href='<c:url value='remove-wishlist-${product.cart_id }'></c:url>'><i class="fa fa-times" aria-hidden="true" style="font-size:20px; color:#e60000"></i></a>
+					<a href='<c:url value='remove-wishlist-${product.wishlist_id }'></c:url>'><i class="fa fa-times" aria-hidden="true" style="font-size:20px; color:#e60000"></i></a>
 				</div>
 			</div>
 		</div>
