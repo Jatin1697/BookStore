@@ -17,21 +17,18 @@ import com.ecommerce.bookstore.model.Cart;
 public class CartDaoImpl implements CartDao{
 
 	@Autowired
-	SessionFactory sessionFactory;
+	private SessionFactory sessionFactory;
 	
-	@Override
 	public void addCart(Cart cart) {
 		// TODO Auto-generated method stub
 		sessionFactory.getCurrentSession().save(cart);
 	}
 
-	@Override
 	public void updateCart(Cart cart) {
 		// TODO Auto-generated method stub
 		sessionFactory.getCurrentSession().update(cart);
 	}
 
-	@Override
 	public boolean deleteCart(Cart cart) {
 		// TODO Auto-generated method stub
 		sessionFactory.getCurrentSession().delete(cart);
@@ -46,7 +43,6 @@ public class CartDaoImpl implements CartDao{
 		return (List<Cart>) criteria.list();
 	}
 
-	@Override
 	public Cart getCart(int cart_id) {
 		// TODO Auto-generated method stub
 		return (Cart) sessionFactory.getCurrentSession().get(Cart.class, cart_id);

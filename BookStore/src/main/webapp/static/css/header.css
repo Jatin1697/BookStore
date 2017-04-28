@@ -91,3 +91,7 @@
 	border: 1px solid #3e8e41;
 	padding: 5px;
 }
+.cart-list a:hover {
+	text-decoration: none;
+}
+.ui-helper-hidden-accessible { display:none; }

@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Min;
 
 import org.springframework.stereotype.Component;
 
@@ -29,9 +30,11 @@ public class Cart implements Serializable{
 	String username;
 	String product_name;
 	String author;
+	@Min(0)
 	int quantity;
 	double price;
 	double total_price;
+	boolean flag = false;
 	
 	public int getCart_id() {
 		return cart_id;
@@ -74,6 +77,12 @@ public class Cart implements Serializable{
 	}
 	public void setAuthor(String author) {
 		this.author = author;
+	}
+	public boolean isFlag() {
+		return flag;
+	}
+	public void setFlag(boolean flag) {
+		this.flag = flag;
 	}
 	
 	

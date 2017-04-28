@@ -17,8 +17,8 @@ var loadFile = function(event) {
 		</div>
 		<div class="col-md-6">
 			<form:form action="updatingAccount-${updateUser.user_id }" method="POST" commandName="updateUser" enctype="multipart/form-data">
-			<input type="hidden" name="username" value="${updateUser.username }">
-			<input type="hidden" name="password" value="${updateUser.password }">
+			<input type="hidden" name="username" value="${updateUser.username }" readonly>
+			<input type="hidden" name="password" value="${updateUser.password }" readonly>
 			<div class="row">
             	<div class="col-md-4">
                 	<div class="form-group">
@@ -52,7 +52,7 @@ var loadFile = function(event) {
                                         <div class="col-md-8">
                                             <div class="form-group">
                                                 <label>Image</label>
-                                                <input type="file" name="user_image" class="form-control" onchange="loadFile(event)" required>
+                                                <input type="file" name="user_image" class="form-control" onchange="loadFile(event)">
                                             </div>
                                         </div>
               </div>

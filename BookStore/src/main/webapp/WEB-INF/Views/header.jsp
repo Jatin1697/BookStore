@@ -11,12 +11,16 @@
 <meta charset="utf-8">
     <link rel='stylesheet' href='static/css/landing.css'>
     <link rel='stylesheet' href='static/css/header.css'>
+    <!-- <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.4/jquery.min.js"></script> -->
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+    <script src="static/js/autocomplete.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
+     
     <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Griffy" rel="stylesheet">
 </head>
@@ -28,11 +32,11 @@
           <div class="col-md-4 col-xs-12" style="text-align: center">
             <img src='static/images/Bookstore-logo.png' alt='Bookstore' height="100px" width="280px"/>
           </div>
-          <div class="col-md-4 col-xs-8" style="padding-top: 40px">
+          <div class="col-md-4 col-xs-8 search-container" style="padding-top: 40px">
             <div class="input-group">
-              <input type="text" class="form-control" placeholder="search"/>
+              <input type="text" id="search" name="search" class="form-control" placeholder="search"/>
               <span class="input-group-addon">
-                <a href="#" style="color:#4CAF50"><i class="fa fa-search"></i></a>
+                <a href='<c:url value='/product?name=<%= request.getParameter("search") %>'></c:url>' style="color:#4CAF50"><i class="fa fa-search"></i></a>
               </span>
             </div>
           </div>
@@ -41,19 +45,21 @@
 	          	<c:if test="${pageContext.request.userPrincipal.name == null }">
 	          		<c:set var="cart_url" value="/login"></c:set>
 	          		<c:set var="wishlist_url" value="/login"></c:set>
+	          		<c:set var="cart_size" value="0"></c:set>
 	          	</c:if>
 	          	<c:if test="${pageContext.request.userPrincipal.name != null }">
 	          		<c:set var="cart_url" value="/cart?username=${user }"></c:set>
 	          		<c:set var="wishlist_url" value="/wishlist?username=${user }"></c:set>
+	          		<c:set var="cart_size" value="${cartSize }"></c:set>
 	          	</c:if>
-	            <a href='<c:url value='${cart_url }'></c:url>'><span class="fa fa-shopping-cart" style="font-size: 25px; color:#585858"></span></a>
-	            <span class="item"><b>CART    0</b></span>
+	            <a href='<c:url value='${cart_url }'></c:url>'><span class="fa fa-shopping-cart" style="font-size: 25px; color:#585858"></span>
+	            <span class="item"><b>CART    0</b></span></a>
 	        </div>
           </div>
           <div class="col-md-2" style="padding-top: 35px">
           	<div class="cart-list">
-            	<a href='<c:url value='${wishlist_url }'></c:url>'><img src='<c:url value='static/images/wishlist-pro-icon.jpg'></c:url>' width='30px' height='30px' /></a>
-            	<span class="item"><b>WISHLIST    0</b></span>
+            	<a href='<c:url value='${wishlist_url }'></c:url>'><img src='<c:url value='static/images/wishlist-pro-icon.jpg'></c:url>' width='30px' height='30px' />
+            	<span class="item"><b>WISHLIST    0</b></span></a>
             </div>
           </div>
         </div>
