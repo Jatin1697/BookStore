@@ -60,9 +60,7 @@ public class ProductDaoImpl implements ProductDao{
 	@Override
 	public List<Product> getProductByCategory(int categoryId) {
 		// TODO Auto-generated method stub
-		Criteria criteria  = sessionFactory.getCurrentSession().createCriteria(Product.class);
-		criteria.add(Restrictions.like("category_id", categoryId));
-		return (List<Product>)criteria.list();
+		return (List<Product>) sessionFactory.getCurrentSession().createQuery("from Product where category_id =" + categoryId).list();
 	}
 
 	@Override

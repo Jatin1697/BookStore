@@ -23,9 +23,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.ecommerce.bookstore.DAO.CategoryDao;
 import com.ecommerce.bookstore.DAO.ProductDao;
 import com.ecommerce.bookstore.DAO.UserDao;
-import com.ecommerce.bookstore.model.Product;
 import com.ecommerce.bookstore.model.Users;
-import com.ecommerce.bookstore.service.MailService;
 import com.google.gson.Gson;
 
 
@@ -35,9 +33,6 @@ public class AppController {
 	
 	@Autowired
 	UserDao userDao;
-	
-	@Autowired
-	MailService mailService;
 	
 	@Autowired
 	ProductDao productDao;
@@ -132,11 +127,21 @@ public class AppController {
     }
     
     @RequestMapping(value="/product" , method = RequestMethod.GET)
-    public String viewProduct(ModelMap model , @RequestParam("name") String product_name)
+    public String viewProduct(ModelMap model , @RequestParam("search") String product_name )
     {
-    	Product product = productDao.getProductByName(product_name);
-    	model.addAttribute("product", product);
+    	model.addAttribute("user", getPrincipal());
+    	model.addAttribute("book",productDao.getProductByName(product_name));
+    	model.addAttribute("categories", categoryDao.getAllCategory());
     	
+    	return "productPage";
+    }
+    
+    @RequestMapping(value="/descriptionPage" , method = RequestMethod.GET)
+    public String toDescriptionPage(@RequestParam("book") String book , ModelMap model)
+    {
+    	model.addAttribute("user", getPrincipal());
+    	model.addAttribute("book",productDao.getProductByName(book));
+    	model.addAttribute("categories", categoryDao.getAllCategory());
     	return "productPage";
     }
     

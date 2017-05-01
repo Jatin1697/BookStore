@@ -26,12 +26,16 @@ import com.ecommerce.bookstore.DAO.CategoryDao;
 import com.ecommerce.bookstore.DAO.ProductDao;
 import com.ecommerce.bookstore.DAO.UserDao;
 import com.ecommerce.bookstore.model.Users;
+import com.ecommerce.bookstore.service.MailService;
 
 @Controller
 public class LoginController {
 	
 	@Autowired
 	CategoryDao categoryDao;
+	
+	@Autowired
+	MailService mailService;
 	
 	@Autowired
 	ProductDao productDao;
@@ -130,7 +134,7 @@ public class LoginController {
 	    	}
 	    	
 	    	userDao.addUser(user);
-	    	//mailService.sendEmail(user);
+	    	mailService.sendEmail(user);
 	    	
 	    	MultipartFile image = user.getUser_image();
 	    	String rootDirectory = request.getSession().getServletContext().getRealPath("/");

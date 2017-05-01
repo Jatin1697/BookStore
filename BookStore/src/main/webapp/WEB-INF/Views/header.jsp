@@ -33,12 +33,14 @@
             <img src='static/images/Bookstore-logo.png' alt='Bookstore' height="100px" width="280px"/>
           </div>
           <div class="col-md-4 col-xs-8 search-container" style="padding-top: 40px">
+          <form:form action="product" method="GET">
             <div class="input-group">
               <input type="text" id="search" name="search" class="form-control" placeholder="search"/>
               <span class="input-group-addon">
-                <a href='<c:url value='/product?name=<%= request.getParameter("search") %>'></c:url>' style="color:#4CAF50"><i class="fa fa-search"></i></a>
+                <button class="icon" style="color:#4CAF50"><i class="fa fa-search"></i></button>
               </span>
             </div>
+           </form:form>
           </div>
           <div class="col-md-2" style="padding-top: 35px; padding-left:40px">
           	<div class="cart-list">
