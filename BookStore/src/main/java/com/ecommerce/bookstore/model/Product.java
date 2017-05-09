@@ -1,6 +1,10 @@
 package com.ecommerce.bookstore.model;
 
 import java.io.Serializable;
+import java.util.Date;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,7 +12,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 
 import org.springframework.stereotype.Component;
@@ -35,6 +42,8 @@ public class Product implements Serializable {
 	int price;
 	int quantity;
 	int discount=0;
+	@Temporal(TemporalType.TIMESTAMP)
+	Date dateTime;
 	
 	public int getDiscount() {
 		return discount;
@@ -72,6 +81,16 @@ public class Product implements Serializable {
 	}
 	public void setSupplier(Supplier supplier) {
 		this.supplier = supplier;
+	}
+	
+	@OneToMany(mappedBy = "product" , cascade = CascadeType.ALL)
+	private Set<Cart> cart;
+	
+	public Set<Cart> getCart() {
+		return cart;
+	}
+	public void setCart(Set<Cart> cart) {
+		this.cart = cart;
 	}
 	/**
 	 * @return the product_id
@@ -140,4 +159,11 @@ public class Product implements Serializable {
 	public void setAuthor(String author) {
 		this.author = author;
 	}
+	public Date getDateTime() {
+		return dateTime;
+	}
+	public void setDateTime(Date dateTime) {
+		this.dateTime = dateTime;
+	}
+	
 }

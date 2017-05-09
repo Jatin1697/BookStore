@@ -3,6 +3,7 @@ package com.ecommerce.bookstore.controller;
 import java.io.File;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -118,6 +119,7 @@ public class AdminSectionController {
 		
 		product.setCategory(category);
 		product.setSupplier(supplier);
+		product.setDateTime(new Date());
     	productDao.addProduct(product);
     	
     	MultipartFile image = product.getProduct_image();
@@ -173,6 +175,7 @@ public class AdminSectionController {
 		
 		product.setCategory(category);
 		product.setSupplier(supplier);
+		product.setDateTime(new Date());
 		productDao.updateProduct(product);
 		
 		MultipartFile image = product.getProduct_image();

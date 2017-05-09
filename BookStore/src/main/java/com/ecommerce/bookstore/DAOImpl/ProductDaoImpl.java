@@ -71,14 +71,14 @@ public class ProductDaoImpl implements ProductDao{
 		return (Product)criteria.uniqueResult();
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<String> getProductListByName(String product_name) {
 		// TODO Auto-generated method stub
 		Criteria criteria  = sessionFactory.getCurrentSession().createCriteria(Product.class);
-		criteria.add(Restrictions.like("product_name", product_name + "%"));
-		@SuppressWarnings("unchecked")
+		criteria.add(Restrictions.like("product_name", product_name + "%").ignoreCase());
 		List<Product> productList = (List<Product>)criteria.list();
-		List<String> list = new ArrayList<>();
+		List<String> list = new ArrayList<String>();
 		
 		for(Product product : productList)
 		{

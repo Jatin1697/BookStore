@@ -2,9 +2,7 @@ package com.ecommerce.bookstore.DAOImpl;
 
 import java.util.List;
 
-import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
-import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,8 +10,8 @@ import org.springframework.transaction.annotation.Transactional;
 import com.ecommerce.bookstore.DAO.CartDao;
 import com.ecommerce.bookstore.model.Cart;
 
-@Repository(value = "cartDao")
 @Transactional
+@Repository(value = "cartDao")
 public class CartDaoImpl implements CartDao{
 
 	@Autowired
@@ -36,11 +34,9 @@ public class CartDaoImpl implements CartDao{
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<Cart> getCartItems(String username) {
+	public List<Cart> getCartItems(int user_id) {
 		// TODO Auto-generated method stub
-		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Cart.class);
-		criteria.add(Restrictions.like("username", username));
-		return (List<Cart>) criteria.list();
+		return (List<Cart>) sessionFactory.getCurrentSession().createQuery("from Cart where user_id = " + user_id).list();
 	}
 
 	public Cart getCart(int cart_id) {

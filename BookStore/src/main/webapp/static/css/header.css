@@ -14,7 +14,7 @@
     padding-left: 20px;
   }
   nav {
-  	font-family: Griffy,cursive;
+  	font-family: 'Bitter',serif;
   	font-size: 16px;
   }
   .navbar{
@@ -88,7 +88,7 @@
 	border-bottom-color:#3e8e41;
 }
 .cart-list:hover {
-	border: 1px solid #3e8e41;
+	outline: 1px solid #3e8e41;
 	padding: 5px;
 }
 .cart-list a:hover {

@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Min;
 
@@ -27,44 +29,44 @@ public class Cart implements Serializable{
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	int cart_id;
 	@Column
-	String username;
-	String product_name;
-	String author;
 	@Min(0)
 	int quantity;
-	double price;
 	double total_price;
 	boolean flag = false;
 	
+	@ManyToOne(optional = false)
+	@JoinColumn(name="user_id" , referencedColumnName="user_id")
+	private Users users;
+	
+	public Users getUsers() {
+		return users;
+	}
+	public void setUsers(Users users) {
+		this.users = users;
+	}
+	
+	@ManyToOne(optional = false)
+	@JoinColumn(name="product_id" , referencedColumnName="product_id")
+	private Product product;
+	
+	public Product getProduct() {
+		return product;
+	}
+	public void setProduct(Product product) {
+		this.product = product;
+	}
 	public int getCart_id() {
 		return cart_id;
 	}
 	public void setCart_id(int cart_id) {
 		this.cart_id = cart_id;
 	}
-	public String getUsername() {
-		return username;
-	}
-	public void setUsername(String username) {
-		this.username = username;
-	}
-	public String getProduct_name() {
-		return product_name;
-	}
-	public void setProduct_name(String product_name) {
-		this.product_name = product_name;
-	}
+	
 	public int getQuantity() {
 		return quantity;
 	}
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
-	}
-	public double getPrice() {
-		return price;
-	}
-	public void setPrice(double price) {
-		this.price = price;
 	}
 	public double getTotal_price() {
 		return total_price;
@@ -72,18 +74,11 @@ public class Cart implements Serializable{
 	public void setTotal_price(double total_price) {
 		this.total_price = total_price;
 	}
-	public String getAuthor() {
-		return author;
-	}
-	public void setAuthor(String author) {
-		this.author = author;
-	}
 	public boolean isFlag() {
 		return flag;
 	}
 	public void setFlag(boolean flag) {
 		this.flag = flag;
 	}
-	
 	
 }

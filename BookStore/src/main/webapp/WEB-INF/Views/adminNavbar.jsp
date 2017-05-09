@@ -34,7 +34,7 @@ input[placeholder], [placeholder], *[placeholder] {
   			<li><a href='<c:url value='/handleSupplier'></c:url>'>Supplier</a></li>
   		</ul>
   		<ul class="nav navbar-nav navbar-right">
-  			<li><a href='<c:url value='/admin'></c:url>'>Hello, ${user }</a></li>
+  			<li><a class="navbar-brand" href='<c:url value='/admin'></c:url>'>Hello, ${user }</a></li>
   			<li><a href='<c:url value='/logout'></c:url>'>Logout</a></li>
   		</ul>
   	</div>

@@ -14,7 +14,13 @@ h4:after {
     -moz-box-shadow:inset 0 1px 1px rgba(0, 0, 0, .05);
 }
 .product {
-	margin : 5px;
+	margin : 10px;
+}
+hr {
+	background-color: #000;
+	border: none;
+    height: 1px;
+    box-shadow: 2px 2px 2px;
 }
 </style>
 <div class="container">
@@ -33,13 +39,13 @@ h4:after {
 		<div class="product">
 			<div class="row">
 				<div class="col-md-2">
-					<img src='<c:url value='/static/images/product/${product.product_name }.png'></c:url>' width=100px height=100px/>
+					<img src='<c:url value='/static/images/product/${product.getProduct().getProduct_name() }.png'></c:url>' width=100px height=100px/>
 				</div>
 				<div class="col-md-3">
-					<p>${product.product_name }</p>
+					<p>${product.getProduct().getProduct_name() }</p>
 				</div>
 				<div class="col-md-2">
-					<p>${product.author }</p>
+					<p>${product.getProduct().getAuthor() }</p>
 				</div>
 				<div class="col-md-2">
 					<p>${product.total_price }</p>
@@ -50,13 +56,22 @@ h4:after {
 					<p><input type="number" class="form-control" value="${product.quantity }"/></p>
 				</div>
 				<div class="col-md-1">
-					<a href='<c:url value='remove-cart-${product.cart_id }'></c:url>'><i class="fa fa-times" aria-hidden="true" style="font-size:20px; color:#e60000"></i></a>
+					<a href='<c:url value='remove-cart-${product.cart_id }'></c:url>' title="remove"><i class="fa fa-times" aria-hidden="true" style="font-size:20px; color:#e60000"></i></a>
 				</div>
 			</div>
 		</div>
 		</c:forEach>
 	<div class="ng-well" style="float:right; margin-right: 100px">
 		<pre>Sub Total	: ${sub_total }</pre>
+	</div>
+	<hr>
+	<div class="row product">
+		<div class="col-md-offset-3 col-md-2">
+			<a href='<c:url value='#'></c:url>' class="btn btn-lg btn-warning">Proceed to Checkout</a>
+		</div>
+		<div class="col-md-offset-1 col-md-2">
+			<a href='<c:url value='home'></c:url>' class="btn btn-lg btn-warning">Shop More</a>
+		</div>
 	</div>
 </div>
 <%@ include file="footer.jsp"  %>

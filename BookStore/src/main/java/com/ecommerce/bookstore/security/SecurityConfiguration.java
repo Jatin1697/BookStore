@@ -33,7 +33,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	      http.authorizeRequests()
 	      	.antMatchers("/","/home").permitAll()
 	        .antMatchers("/cart**","/account**").access("hasRole('USER')")
-	        .antMatchers("/admin/**").access("hasRole('ADMIN')")
+	        .antMatchers("/admin**").access("hasRole('ADMIN')")
 	        .antMatchers("/db/**").access("hasRole('ADMIN') or hasRole('DBA')")
 	        .and().formLogin().loginPage("/login").successHandler(customSuccessHandler)
 	        .usernameParameter("username").passwordParameter("password")
