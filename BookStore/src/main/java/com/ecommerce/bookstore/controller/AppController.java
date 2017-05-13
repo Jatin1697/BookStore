@@ -129,19 +129,12 @@ public class AppController {
     @RequestMapping(value="/product" , method = RequestMethod.GET)
     public String viewProduct(ModelMap model , @RequestParam("search") String product_name )
     {
-    	model.addAttribute("user", getPrincipal());
+    	if(product_name.isEmpty() || productDao.getProductByName(product_name) == null)
+    		return "redirect:/home";
+    		
     	model.addAttribute("book",productDao.getProductByName(product_name));
     	model.addAttribute("categories", categoryDao.getAllCategory());
     	
-    	return "productPage";
-    }
-    
-    @RequestMapping(value="/descriptionPage" , method = RequestMethod.GET)
-    public String toDescriptionPage(@RequestParam("book") String book , ModelMap model)
-    {
-    	model.addAttribute("user", getPrincipal());
-    	model.addAttribute("book",productDao.getProductByName(book));
-    	model.addAttribute("categories", categoryDao.getAllCategory());
     	return "productPage";
     }
     

@@ -41,13 +41,13 @@ var loadFile = function(event) {
 						<div class="form-group">
 							<label for="username" class="col-sm-4 control-label">Username</label>
 								<div class="col-sm-8">
-			                    	<input type="text" class="form-control" id="username" name="username" placeholder="Username" value="${username }" required>
+			                    	<form:input type="text" class="form-control" path="username" placeholder="Username"></form:input>
 			                    </div>
 			            </div>
 			            <div class="form-group">
 							<label for="password" class="col-sm-4 control-label">Password</label>
 								<div class="col-sm-8">
-			                    	<input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
+			                    	<form:input type="password" class="form-control" path="password" placeholder="Password" />
 			                    </div>
 			            </div>
 			            <div class="form-group">
@@ -59,39 +59,39 @@ var loadFile = function(event) {
 			            <div class="form-group">
 							<label for="name" class="col-sm-4 control-label">Name</label>
 								<div class="col-sm-8">
-			                    	<input type="text" class="form-control" id="name" name="name" placeholder="Name" value="${name }" required>
+			                    	<form:input type="text" class="form-control" path="name" placeholder="Name" value="${name }" />
 			                    </div>
 			            </div>
 			            <div class="form-group">
 							<label for="email" class="col-sm-4 control-label">E-mail</label>
 								<div class="col-sm-8">
-			                    	<input type="email" class="form-control" id="email" name="email" placeholder="E-mail" value="${email }" required>
+			                    	<form:input type="email" class="form-control" path="email" placeholder="E-mail" value="${email }" />
 			                    </div>
 			            </div>
 			            <div class="form-group">
 							<label for="mobile" class="col-sm-4 control-label">Mobile No</label>
 								<div class="col-sm-8">
-			                    	<input type="tel" class="form-control" id="mobile" name="mobile" placeholder="Contact Number" value="${mobile }" required>
+			                    	<form:input type="tel" class="form-control" path="mobile" placeholder="Contact Number" value="${mobile }" />
 			                    </div>
 			            </div>
 			            <div class="form-group">
 							<label for="address" class="col-sm-4 control-label">Address</label>
 								<div class="col-sm-8">
-			                    	<input type="text" class="form-control" id="address" name="address" placeholder="Address" value="${address }" required>
+			                    	<form:input type="text" class="form-control" path="address" placeholder="Address" value="${address }" />
 			                    </div>
 			            </div>  
 			            <div class="form-group">
 			            	<label for="user_image" class="col-sm-4 control-label">Image</label>
 			            	<div class="col-sm-8">
-			                    	<input type="file" id="user_image" name="user_image" onchange="loadFile(event)" accept="image/*">
+			                    	<form:input type="file" path="user_image" onchange="loadFile(event)" accept="image/*"/>
 			                    </div>
 			            </div>
 			            <div class="form-group">
 						    <div class="col-sm-offset-4 col-sm-4">
-						      <input type="submit" class="btn btn-success" value="Register">
+						      <button type="submit" class="btn btn-success">Register</button>
 						     </div>
 						     <div class="col-sm-4">
-						      <input type="reset" class="btn btn-warning" value="Reset">
+						      <button type="reset" class="btn btn-warning">Reset</button>
 						    </div>
 						</div>   
 					</div>	                                      

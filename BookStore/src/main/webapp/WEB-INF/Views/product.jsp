@@ -1,7 +1,7 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <html>
 <head>
-<title>Admin/Product</title>
+<title>Admin|Product</title>
 
 <style type="text/css">
 .for_form {
@@ -48,30 +48,30 @@ var loadFile = function(event) {
 	<div class="container for_form">
 		<c:choose>
 			<c:when test="${edit}">
-				<form:form class="form-horizontal" action="edit-product-${product_id }" commandName="update_product" enctype="multipart/form-data"  method="POST">
+				<form:form class="form-horizontal" action="update-product/${product_id }" commandName="update_product" enctype="multipart/form-data"  method="POST">
 					<div class="col-md-4">
 						<div class="form-group">
 						    <label for="product_name" class="col-sm-4 control-label">Name</label>
 						    <div class="col-sm-8">
-						      <input type="text" class="form-control" value="${update_product.product_name }" id="product_name" name="product_name" placeholder="Product">
+						      <form:input type="text" class="form-control" value="${update_product.product_name }" path="product_name" placeholder="Product"/>
 						    </div>
 						  </div>
 						  <div class="form-group">
 						    <label for="author" class="col-sm-4 control-label">Author</label>
 						    <div class="col-sm-8">
-						      <input type="text" class="form-control" value="${update_product.author }" id="author" name="author" placeholder="Name">
+						      <form:input type="text" class="form-control" value="${update_product.author }" path="author" placeholder="Name"/>
 						    </div>
 						  </div>
 						  <div class="form-group">
 						    <label for="description" class="col-sm-4 control-label">Description</label>
 						    <div class="col-sm-8">
-						      <textarea rows="5" class="form-control" id="description" name="description" placeholder="Description"><c:out value="${update_product.description }"></c:out></textarea>
+						      <form:textarea rows="5" class="form-control" path="description" placeholder="Description"></form:textarea>
 						    </div>
 						  </div>
 						  <div class="form-group">
 						    <label for="price" class="col-sm-4 control-label">Price</label>
 						    <div class="col-sm-8">
-						      <input type="text" class="form-control" value="${update_product.price }" id="price" name="price" placeholder="Integer">
+						      <form:input type="text" class="form-control" value="${update_product.price }" path="price" placeholder="Integer"/>
 						    </div>
 						  </div>
 						</div>
@@ -79,13 +79,13 @@ var loadFile = function(event) {
 						  <div class="form-group">
 						    <label for="quantity" class="col-sm-4 control-label">Quantity</label>
 						    <div class="col-sm-8">
-						      <input type="text" class="form-control" value="${update_product.quantity }" id="quantity" name="quantity" placeholder="Integer">
+						      <form:input type="text" class="form-control" value="${update_product.quantity }" path="quantity" placeholder="Integer"/>
 						    </div>
 						  </div>
 						  <div class="form-group">
 						    <label for="discount" class="col-sm-2 control-label col-md-4">Discount</label>
 						    <div class="col-sm-10 col-md-8">
-						      <input type="text" class="form-control" value="${update_product.discount }" id="discount" name="discount" placeholder="(0-100)%">
+						      <form:input type="text" class="form-control" value="${update_product.discount }" path="discount" placeholder="(0-100)%"/>
 						    </div>
 						  </div>
 						  <div class="form-group" class="form-control" >
@@ -136,25 +136,25 @@ var loadFile = function(event) {
 						<div class="form-group">
 						    <label for="product_name" class="col-sm-4 control-label">Name</label>
 						    <div class="col-sm-8">
-						      <input type="text" class="form-control" id="product_name" name="product_name" placeholder="Product" required>
+						      <form:input type="text" class="form-control" path="product_name" placeholder="Product" />
 						    </div>
 						  </div>
 						  <div class="form-group">
 						    <label for="author" class="col-sm-4 control-label">Author</label>
 						    <div class="col-sm-8">
-						      <input type="text" class="form-control" id="author" name="author" placeholder="Name" required>
+						      <form:input type="text" class="form-control" path="author" placeholder="Name" />
 						    </div>
 						  </div>
 						  <div class="form-group">
 						    <label for="description" class="col-sm-4 control-label">Description</label>
 						    <div class="col-sm-8">
-						      <textarea rows="5" class="form-control" id="description" name="description" placeholder="Description"></textarea>
+						      <form:textarea rows="5" class="form-control" path="description" placeholder="Description"></form:textarea>
 						    </div>
 						  </div>
 						  <div class="form-group">
 						    <label for="price" class="col-sm-4 control-label">Price</label>
 						    <div class="col-sm-8">
-						      <input type="text" class="form-control" id="price" name="price" placeholder="Integer" required>
+						      <form:input type="text" class="form-control" path="price" placeholder="Integer" />
 						    </div>
 						  </div>
 						</div>
@@ -162,13 +162,13 @@ var loadFile = function(event) {
 						  <div class="form-group">
 						    <label for="quantity" class="col-sm-4 control-label">Quantity</label>
 						    <div class="col-sm-8">
-						      <input type="text" class="form-control" id="quantity" name="quantity" placeholder="Integer" required>
+						      <form:input type="text" class="form-control" path="quantity" placeholder="Integer" />
 						    </div>
 						  </div>
 						  <div class="form-group">
 						    <label for="discount" class="col-sm-2 control-label col-md-4">Discount</label>
 						    <div class="col-sm-10 col-md-8">
-						      <input type="text" class="form-control" id="discount" name="discount" placeholder="(0-100)%" required>
+						      <form:input type="text" class="form-control" path="discount" placeholder="(0-100)%" />
 						    </div>
 						  </div>
 						  <div class="form-group" class="form-control" >
@@ -247,8 +247,8 @@ var loadFile = function(event) {
 						<td><c:out value="${product.getSupplier().getSupplier_name() }"></c:out></td>
 						<td><c:out value="${product.price }"></c:out></td>
 						<td><c:out value="${product.quantity }"></c:out></td>
-						<td style="text-align: center"><a href='<c:url value='/edit-product-${product.product_id }'></c:url>' class="btn btn-info">Edit</a></td>
-						<td style="text-align: center"><a href='<c:url value='/delete-product-${product.product_id }'></c:url>' class="btn btn-danger">Delete</a></td>
+						<td style="text-align: center"><a href='<c:url value='/admin/edit-product/${product.product_id }'></c:url>' class="btn btn-info">Edit</a></td>
+						<td style="text-align: center"><a href='<c:url value='/admin/delete-product/${product.product_id }'></c:url>' class="btn btn-danger">Delete</a></td>
 						</tr>
 					</c:forEach>
 				</tbody>

@@ -27,29 +27,29 @@
 	<div class="container for_form">
 	<c:choose>
 		<c:when test="${edit }">
-			<form:form class="form-horizontal" action="edit-supplier-${supplier_id }" commandName="update_supplier"  method="POST">
+			<form:form class="form-horizontal" action="update-supplier/${supplier_id }" commandName="update_supplier"  method="POST">
 			<div class="form-group">
 			    <label for="supplier_name" class="col-sm-2 control-label">Name</label>
 			    <div class="col-sm-10">
-			      <input type="text" class="form-control" value="${update_supplier.supplier_name }" id="supplier_name" name="supplier_name" placeholder="Enter Name">
+			      <form:input type="text" class="form-control" value="${update_supplier.supplier_name }" path="supplier_name" placeholder="Enter Name"/>
 			    </div>
 			  </div>
 			  <div class="form-group">
 			    <label for="supplier_address" class="col-sm-2 control-label">Address</label>
 			    <div class="col-sm-10">
-			      <textarea rows="3" class="form-control" id="supplier_address" name="supplier_address" placeholder="Enter Address"><c:out value="${update_supplier.supplier_address }"></c:out></textarea>
+			      <form:textarea rows="3" class="form-control" path="supplier_address" placeholder="Enter Address"></form:textarea>
 			    </div>
 			  </div>
 			  <div class="form-group">
 			    <label for="supplier_email" class="col-sm-2 control-label">Email</label>
 			    <div class="col-sm-10">
-			      <input type="email" class="form-control" value="${update_supplier.supplier_email }" id="supplier_email" name="supplier_email" placeholder="Email">
+			      <form:input type="email" class="form-control" value="${update_supplier.supplier_email }" path="supplier_email" placeholder="Email"/>
 			    </div>
 			  </div>
 			  <div class="form-group">
 			    <label for="supplier_mob_no" class="col-sm-2 control-label">Mobile No</label>
 			    <div class="col-sm-10">
-			      <input type="tel" class="form-control" value="${update_supplier.supplier_mob_no }" id="supplier_mob_no" name="supplier_mob_no" placeholder="Enter Mobile No">
+			      <form:input type="tel" class="form-control" value="${update_supplier.supplier_mob_no }" path="supplier_mob_no" placeholder="Enter Mobile No"/>
 			    </div>
 			  </div>
 			  <div class="form-group">
@@ -65,19 +65,19 @@
 			<div class="form-group">
 			    <label for="supplier_name" class="col-sm-2 control-label">Name</label>
 			    <div class="col-sm-10">
-			      <input type="text" class="form-control" id="supplier_name" name="supplier_name" placeholder="Enter Name">
+			      <form:input type="text" class="form-control" path="supplier_name" placeholder="Enter Name"/>
 			    </div>
 			  </div>
 			  <div class="form-group">
 			    <label for="supplier_address" class="col-sm-2 control-label">Address</label>
 			    <div class="col-sm-10">
-			      <textarea rows="3" class="form-control" id="supplier_address" name="supplier_address" placeholder="Enter Address"></textarea>
+			      <form:textarea rows="3" class="form-control" path="supplier_address" placeholder="Enter Address"></form:textarea>
 			    </div>
 			  </div>
 			  <div class="form-group">
 			    <label for="supplier_email" class="col-sm-2 control-label">Email</label>
 			    <div class="col-sm-10">
-			      <input type="email" class="form-control" id="supplier_email" name="supplier_email" placeholder="Email">
+			      <form:input type="email" class="form-control" path="supplier_email" placeholder="Email"/>
 			    </div>
 			  </div>
 			  <div class="form-group">
@@ -121,8 +121,8 @@
 						<td><c:out value="${supplier.supplier_address }"></c:out></td>
 						<td><c:out value="${supplier.supplier_email }"></c:out></td>
 						<td><c:out value="${supplier.supplier_mob_no }"></c:out></td>
-						<td style="text-align: center"><a href='<c:url value='/edit-supplier-${supplier.supplier_id }'></c:url>' class="btn btn-info">Edit</a></td>
-						<td style="text-align: center"><a href='<c:url value='/delete-supplier-${supplier.supplier_id }'></c:url>' class="btn btn-danger">Delete</a></td>
+						<td style="text-align: center"><a href='<c:url value='/admin/edit-supplier/${supplier.supplier_id }'></c:url>' class="btn btn-info">Edit</a></td>
+						<td style="text-align: center"><a href='<c:url value='/admin/delete-supplier/${supplier.supplier_id }'></c:url>' class="btn btn-danger">Delete</a></td>
 						</tr>
 					</c:forEach>
 				</tbody>

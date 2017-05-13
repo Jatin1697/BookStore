@@ -5,7 +5,7 @@
 	<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> 
-	<script type="text/javascript" src="static/js/table_filter.js"></script>
+	<script type="text/javascript" src='<c:url value='static/js/table_filter.js'></c:url>'></script>
 </head>
 <style> 
 body{padding-top:70px;}
@@ -30,11 +30,11 @@ input[placeholder], [placeholder], *[placeholder] {
   	</div>
   	<div class="collapse navbar-collapse">
   		<ul class="nav navbar-nav">
-  			<li><a href='<c:url value='/handleProduct'></c:url>'>Product</a></li>
-  			<li><a href='<c:url value='/handleSupplier'></c:url>'>Supplier</a></li>
+  			<li><a href='<c:url value='/admin/handleProduct'></c:url>'>Product</a></li>
+  			<li><a href='<c:url value='/admin/handleSupplier'></c:url>'>Supplier</a></li>
   		</ul>
   		<ul class="nav navbar-nav navbar-right">
-  			<li><a class="navbar-brand" href='<c:url value='/admin'></c:url>'>Hello, ${user }</a></li>
+  			<li><a class="navbar-brand" href='<c:url value='/admin'></c:url>'>Hello, ${pageContext.request.userPrincipal.name }</a></li>
   			<li><a href='<c:url value='/logout'></c:url>'>Logout</a></li>
   		</ul>
   	</div>

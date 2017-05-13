@@ -46,7 +46,7 @@
 										<c:out value="No"></c:out>
 									</c:otherwise>
 								</c:choose>
-								<a href='<c:url value='/change-status-user-${user.user_id }'></c:url>' class="btn btn-danger">CHANGE</a>
+								<a href='<c:url value='/admin/change-status-user/${user.user_id }'></c:url>' class="btn btn-danger">CHANGE</a>
 							</td>
 							</tr>
 						</c:forEach>
@@ -63,9 +63,9 @@
 						<h3 class="panel-title">Update Category</h3>
 					</div>
 					<div class="panel-body">
-						<form:form action="edit-category-${category_id}" commandName="update_category" method="POST">
+						<form:form action="update-category/${category_id}" commandName="update_category" method="POST">
 							<div class="input-group">
-							<input type="text" name="category_name" id="category_name" value="${update_category.category_name }" class="form-control"><br>
+							<form:input type="text" path="category_name" value="${update_category.category_name }" class="form-control"/><br>
 							<span class="input-group-btn"><input type="submit" value="UPDATE" class="btn btn-success"></span>
 							</div>
 						</form:form>
@@ -76,9 +76,9 @@
 						<h3 class="panel-title">Add New Category</h3>
 					</div>
 					<div class="panel-body">
-						<form:form action="newCategory" commandName="new_category" method="POST">
+						<form:form action="admin/newCategory" commandName="new_category" method="POST">
 							<div class="input-group">
-							<input type="text" name="category_name" id="category_name" placeholder="Category Name" class="form-control"><br>
+							<form:input type="text" path="category_name" placeholder="Category Name" class="form-control"/><br>
 							<span class="input-group-btn"><input type="submit" value="ADD" class="btn btn-success"></span>
 							</div>
 						</form:form>
@@ -106,8 +106,8 @@
 						<c:forEach items="${categories }" var="category">
 							<tr >
 							<td><c:out value="${category.category_name }"></c:out></td>
-							<td style="text-align: center"><a href='<c:url value='/edit-category-${category.category_id }'></c:url>' class="btn btn-info">Edit</a></td>
-							<td style="text-align: center"><a href='<c:url value='/delete-category-${category.category_id }'></c:url>' class="btn btn-danger">Delete</a></td>
+							<td style="text-align: center"><a href='<c:url value='/admin/edit-category/${category.category_id }'></c:url>' class="btn btn-info">Edit</a></td>
+							<td style="text-align: center"><a href='<c:url value='/admin/delete-category/${category.category_id }'></c:url>' class="btn btn-danger">Delete</a></td>
 							</tr>
 						</c:forEach>
 					</tbody>

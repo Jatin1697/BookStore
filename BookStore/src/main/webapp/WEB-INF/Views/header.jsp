@@ -35,7 +35,7 @@
           </div>
           <div class="col-md-4 col-xs-8 search-container" style="padding-top: 40px">
           <form:form action="product" method="GET">
-            <div class="input-group">
+            <div class="input-group ui-widget">
               <input type="text" id="search" name="search" class="form-control" placeholder="search"/>
               <span class="input-group-addon">
                 <button class="icon" style="color:#4CAF50"><i class="fa fa-search"></i></button>
@@ -51,8 +51,8 @@
 	          		<c:set var="cart_size" value="0"></c:set>
 	          	</c:if>
 	          	<c:if test="${pageContext.request.userPrincipal.name != null }">
-	          		<c:set var="cart_url" value="/cart?username=${user }"></c:set>
-	          		<c:set var="wishlist_url" value="/wishlist?username=${user }"></c:set>
+	          		<c:set var="cart_url" value="/cart?username=${pageContext.request.userPrincipal.name}"></c:set>
+	          		<c:set var="wishlist_url" value="/wishlist?username=${pageContext.request.userPrincipal.name}"></c:set>
 	          		<c:set var="cart_size" value="${cartSize }"></c:set>
 	          	</c:if>
 	            <a href='<c:url value='${cart_url }'></c:url>'><span class="fa fa-shopping-cart" style="font-size: 25px; color:#585858"></span>
@@ -97,9 +97,9 @@
          <c:if test="${pageContext.request.userPrincipal.name !=null}">
 	       <li class="${Contactus } dropdown"><a class="dropbtn" href='<c:url value='/home'></c:url>'>Welcome : ${pageContext.request.userPrincipal.name} <span class="caret"></span></a>
 	       	<ul class="dropdown-menu" style="width:150px">
-	       		<li><a href='<c:url value='/account?username=${user}'></c:url>'>your account</a></li>
-	       		<li><a href='<c:url value='/orders?username=${user}'></c:url>'>your orders</a></li>
-	       		<li><a href='<c:url value='/cart?username=${user}'></c:url>'>your cart</a></li>
+	       		<li><a href='<c:url value='/account?username=${pageContext.request.userPrincipal.name}'></c:url>'>your account</a></li>
+	       		<li><a href='<c:url value='/orders?username=${pageContext.request.userPrincipal.name}'></c:url>'>your orders</a></li>
+	       		<li><a href='<c:url value='/cart?username=${pageContext.request.userPrincipal.name}'></c:url>'>your cart</a></li>
 	       	</ul>
 	       </li>
 	       <li><a href='<c:url value='/home'></c:url>' style="padding-bottom: 13px; padding-top: 13px"><img src='<c:url value='/static/images/user/${pageContext.request.userPrincipal.name}.png'></c:url>' height='25' width='25' class="img img-rounded"/></a></li>

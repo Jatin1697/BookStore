@@ -59,7 +59,7 @@ public class AdminSectionController {
     		return "redirect:/login";
     	}
 		
-        model.addAttribute("user", getPrincipal());
+        
       
         List<Users> users = userDao.getUsersOnly();
         model.addAttribute("users", users);
@@ -76,7 +76,7 @@ public class AdminSectionController {
         return "admin";
     }
 	
-	@RequestMapping(value="/change-status-user-{user_id}" , method = RequestMethod.GET)
+	@RequestMapping(value="/admin/change-status-user/{user_id}" , method = RequestMethod.GET)
 	public String changeUserStatus(@PathVariable int user_id)
 	{
 		Users user = userDao.getUser(user_id);
@@ -90,9 +90,9 @@ public class AdminSectionController {
 	}
 	
 	//PRODUCT PAGE CONTROLLER
-    @RequestMapping(value = "/handleProduct", method = RequestMethod.GET)
+    @RequestMapping(value = "/admin/handleProduct", method = RequestMethod.GET)
     public String productPage(ModelMap model) {
-        model.addAttribute("user", getPrincipal());
+        
         model.addAttribute("edit", false);
     	model.addAttribute("new_product",new Product());
     	
@@ -110,7 +110,7 @@ public class AdminSectionController {
         return "product";
     }
     
-	@RequestMapping(value="/newProduct", method = RequestMethod.POST)
+	@RequestMapping(value="/admin/newProduct", method = RequestMethod.POST)
     public String addNewProduct(@ModelAttribute("new_product") Product product , HttpServletRequest request)
     {
 		
@@ -139,15 +139,14 @@ public class AdminSectionController {
     		}
     	}
     	
-    	return "redirect:/handleProduct";
+    	return "redirect:/admin/handleProduct";
     }
     
-    @RequestMapping(value="/edit-product-{product_id}", method = RequestMethod.GET)
+    @RequestMapping(value="/admin/edit-product/{product_id}", method = RequestMethod.GET)
     public String editProduct (@PathVariable int product_id , ModelMap model)
     {
     	Product product = productDao.getProduct(product_id);
     	System.out.println("product_id" + product_id);
-    	model.addAttribute("user", getPrincipal());
     	model.addAttribute("edit", true);
     	model.addAttribute("update_product",product);
     	
@@ -167,7 +166,7 @@ public class AdminSectionController {
     	return "product";
     }
     
-    @RequestMapping(value="/edit-product-{product_id}" , method = RequestMethod.POST)
+    @RequestMapping(value="/admin/edit-product/update-product/{product_id}" , method = RequestMethod.POST)
     public String updateProduct(@ModelAttribute("update_product") Product product , HttpServletRequest request)
     {
     	category = categoryDao.getCategory(product.getCategory().getCategory_id());
@@ -195,33 +194,33 @@ public class AdminSectionController {
     		}
     	}
     	
-    	return "redirect:/handleProduct";
+    	return "redirect:/admin/handleProduct";
     }
     
-    @RequestMapping(value="/delete-product-{product_id}", method = RequestMethod.GET)
+    @RequestMapping(value="/admin/delete-product/{product_id}", method = RequestMethod.GET)
     public String deleteProduct (@PathVariable int product_id)
     {
     	Product productId = productDao.getProduct(product_id);
 		productDao.deleteProduct(productId );
-    	return "redirect:/handleProduct";
+    	return "redirect:/admin/handleProduct";
     }
     
     //CATEGORY CONTROLLER
-    @RequestMapping(value="/newCategory", method = RequestMethod.POST)
+    @RequestMapping(value="/admin/newCategory", method = RequestMethod.POST)
     public String addCategory (@ModelAttribute("new_category") Category category)
     {
     	categoryDao.addCategory(category);
     	return "redirect:/admin";
     }
     
-    @RequestMapping(value="/delete-category-{category_id}", method = RequestMethod.GET)
+    @RequestMapping(value="/admin/delete-category/{category_id}", method = RequestMethod.GET)
     public String deleteCategory(@PathVariable int category_id)
     {
     	categoryDao.deleteCategory(categoryDao.getCategory(category_id));
     	return "redirect:/admin";
     }
     
-    @RequestMapping(value="/edit-category-{category_id}" , method = RequestMethod.GET)
+    @RequestMapping(value="/admin/edit-category/{category_id}" , method = RequestMethod.GET)
     public String editCategory(@PathVariable int category_id , ModelMap model)
     {
     	Category category = categoryDao.getCategory(category_id);
@@ -241,7 +240,7 @@ public class AdminSectionController {
     	return "admin";
     }
     
-    @RequestMapping(value="/edit-category-{category_id}" , method = RequestMethod.POST)
+    @RequestMapping(value="/admin/edit-category/update-category/{category_id}" , method = RequestMethod.POST)
     public String updateCategory(@ModelAttribute("update_category") Category category)
     {
     	categoryDao.updateCategory(category);
@@ -249,10 +248,10 @@ public class AdminSectionController {
     }
     
     //SUPPLIER CONTROLLER
-    @RequestMapping(value="/handleSupplier" , method = RequestMethod.GET)
+    @RequestMapping(value="/admin/handleSupplier" , method = RequestMethod.GET)
     public String supplierPage(ModelMap model)
     {
-    	model.addAttribute("user", getPrincipal());
+    	
     	model.addAttribute("edit", false);
     	model.addAttribute("no_of_suppliers", supplierDao.getAllSuppliers().size());
     	model.addAttribute("new_supplier", new Supplier());
@@ -260,21 +259,21 @@ public class AdminSectionController {
     	return "supplier";
     }
     
-    @RequestMapping(value="/delete-supplier-{supplier_id}" , method = RequestMethod.GET)
+    @RequestMapping(value="/admin/delete-supplier/{supplier_id}" , method = RequestMethod.GET)
     public String deleteSupplier(@PathVariable int supplier_id)
     {
     	supplierDao.deleteSupplier(supplierDao.getSupplier(supplier_id));
-    	return "redirect:/handleSupplier";
+    	return "redirect:/admin/handleSupplier";
     }
     
-    @RequestMapping(value="/newSupplier" , method = RequestMethod.POST)
+    @RequestMapping(value="/admin/newSupplier" , method = RequestMethod.POST)
     public String addSupplier(@ModelAttribute("new_supplier") Supplier supplier)
     {
     	supplierDao.addSupplier(supplier);
-    	return "redirect:/handleSupplier";
+    	return "redirect:/admin/handleSupplier";
     }
 	
-    @RequestMapping(value="/edit-supplier-{supplier_id}" , method = RequestMethod.GET)
+    @RequestMapping(value="/admin/edit-supplier/{supplier_id}" , method = RequestMethod.GET)
     public String editSupplier(@PathVariable int supplier_id , ModelMap model)
     {
     	Supplier supplier1 = supplierDao.getSupplier(supplier_id);
@@ -286,11 +285,11 @@ public class AdminSectionController {
     	return "supplier";
     }
     
-    @RequestMapping(value="/edit-supplier-{supplier_id}" , method = RequestMethod.POST)
+    @RequestMapping(value="/admin/edit-supplier/update-supplier/{supplier_id}" , method = RequestMethod.POST)
     public String updateSupplier(@ModelAttribute("update_supplier") Supplier supplier)
     {
     	supplierDao.updateSupplier(supplier);
-    	return "redirect:/handleSupplier";
+    	return "redirect:/admin/handleSupplier";
     }
     
 	private String getPrincipal(){
