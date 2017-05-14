@@ -1,29 +1,22 @@
 package com.ecommerce.bookstore.controller;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
-
 import com.ecommerce.bookstore.DAO.CategoryDao;
 import com.ecommerce.bookstore.DAO.ProductDao;
 import com.ecommerce.bookstore.DAO.UserDao;
-import com.ecommerce.bookstore.model.Users;
 import com.google.gson.Gson;
 
 
@@ -58,7 +51,7 @@ public class AppController {
     	return "contact_us";
     }
     
-    @RequestMapping(value="/displayProduct-{categoryId}" , method = RequestMethod.GET)
+    @RequestMapping(value="/displayProduct/list/category-wise/{categoryId}" , method = RequestMethod.GET)
     public String displayProduct(ModelMap model , @PathVariable("categoryId") int categoryId )
     {
     	model.addAttribute("genre", "activ");
@@ -67,7 +60,7 @@ public class AppController {
     	return "displayProduct";
     }
     
-    @RequestMapping(value="/allProduct" , method=RequestMethod.GET)
+    @RequestMapping(value="/displayProduct/list" , method=RequestMethod.GET)
     public String allProducts(ModelMap model)
     {
     	model.addAttribute("DisplayProduct","activ");
@@ -76,44 +69,7 @@ public class AppController {
     	return "displayProduct";
     }
     
-    @RequestMapping(value="/account" , method = RequestMethod.GET)
-    public String youtAccount(@RequestParam("username") String username , ModelMap model)
-    {
-    	model.addAttribute("categories", categoryDao.getAllCategory());
-    	Users user = userDao.getUserByUsername(getPrincipal());
-    	model.addAttribute("updateUser", user);
-    	
-    	return "userDetails";
-    }
-    
-    @RequestMapping(value="/updatingAccount-{user_id}" , method = RequestMethod.POST)
-    public String updateAccountDetails(@ModelAttribute("updateUser") Users user , ModelMap model , HttpServletRequest request)
-    {
-    	user.setActive(true);
-    	userDao.updateUser(user);
-    	
-    	MultipartFile image = user.getUser_image();
-    	String rootDirectory = request.getSession().getServletContext().getRealPath("/");
-    	
-    	path = Paths.get(rootDirectory + "/static/images/user/" + user.getUsername()+".png");
-    	System.out.println(path);
-    	if(image != null && !image.isEmpty())
-    	{
-    		try
-    		{
-    			image.transferTo(new File(path.toString()));
-    		}
-    		catch(Exception e)
-    		{
-    			e.printStackTrace();
-    		}
-    	}
-    	
-    	model.addAttribute("msg", "Details have been successfully updated");
-    	return "redirect:/home";
-    }
-    
-    @RequestMapping(value="/SearchController", method = RequestMethod.GET)
+    @RequestMapping(value={"/SearchController","/SearchController/*"}, method = RequestMethod.GET)
     public void searchProducts(@RequestParam("term") String product_name , ModelMap model , HttpServletResponse resp)
     {
     	List<String> list = productDao.getProductListByName(product_name);
@@ -138,7 +94,8 @@ public class AppController {
     	return "productPage";
     }
     
-    private String getPrincipal(){
+    @SuppressWarnings("unused")
+	private String getPrincipal(){
         String userName = null;
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
  

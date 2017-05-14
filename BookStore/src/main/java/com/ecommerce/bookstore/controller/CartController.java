@@ -38,6 +38,11 @@ public class CartController {
     @RequestMapping(value="/cart", method = RequestMethod.GET)
     public String shoppingCart(@RequestParam("username") String username , ModelMap model)// , @RequestParam("msg") String msg )
     {
+    	if(!username.equals(getPrincipal())){
+    		System.out.println(username);
+    		return "redirect:/home";
+    	}
+    		
     	model.addAttribute("user", getPrincipal());
 		model.addAttribute("categories", categoryDao.getAllCategory());
     	model.addAttribute("products",cartDao.getCartItems(userDao.getUserByUsername(username).getUser_id()));

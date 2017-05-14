@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,8 +47,13 @@ public class LoginController {
 	Path path;
 
 	@RequestMapping(value={"/","/home"} , method = RequestMethod.GET)
-	public String landingPage(ModelMap model , HttpServletRequest request){
+	public String landingPage(ModelMap model , HttpServletRequest request , HttpSession session){
 		model.addAttribute("user", getPrincipal());
+		
+		/*if(userDao.getUserByUsername(getPrincipal()).getRole_id() == 1)
+			session.setAttribute("test1",true);
+		else
+			session.setAttribute("test1", false);*/
 		
 		model.addAttribute("categories", categoryDao.getAllCategory());
 		model.addAttribute("products", productDao.getAllProducts());

@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -52,7 +53,7 @@ public class AdminSectionController {
 	Path path;
 	
 	@RequestMapping(value = "/admin", method = RequestMethod.GET)
-    public String adminPage(ModelMap model) {
+    public String adminPage(ModelMap model,HttpSession session) {
 		
 		if(getPrincipal() == "anonymousUser")
     	{
@@ -63,7 +64,7 @@ public class AdminSectionController {
       
         List<Users> users = userDao.getUsersOnly();
         model.addAttribute("users", users);
-        
+        session.setAttribute("role", "ROLE_ADMIN");
         model.addAttribute("edit", false);
         model.addAttribute("new_category", new Category());
         
