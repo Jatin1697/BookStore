@@ -92,6 +92,16 @@ public class Product implements Serializable {
 	public void setCart(Set<Cart> cart) {
 		this.cart = cart;
 	}
+	
+	@OneToMany(mappedBy = "product" , cascade = CascadeType.ALL)
+	private Set<Wishlist> wishlist;
+	
+	public Set<Wishlist> getWishlist() {
+		return wishlist;
+	}
+	public void setWishlist(Set<Wishlist> wishlist) {
+		this.wishlist = wishlist;
+	}
 	/**
 	 * @return the product_id
 	 */

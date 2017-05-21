@@ -57,6 +57,16 @@ public class Users implements Serializable{
 		this.cart = cart;
 	}
 	
+	@OneToMany(mappedBy="users" , cascade = CascadeType.ALL)
+	private Set<Wishlist> wishlist;
+	
+	public Set<Wishlist> getWishlist() {
+		return wishlist;
+	}
+	public void setWishlist(Set<Wishlist> wishlist) {
+		this.wishlist = wishlist;
+	}
+
 	@Transient
 	private MultipartFile user_image;
 	public MultipartFile getUser_image() {

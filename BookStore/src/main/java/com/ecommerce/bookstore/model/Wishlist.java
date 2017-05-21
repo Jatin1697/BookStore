@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
@@ -25,41 +27,37 @@ public class Wishlist implements Serializable{
 	@Column
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	int wishlist_id;
-	@Column
-	String username;
-	String product_name;
-	String author;
-	String description;
+	
+	@ManyToOne(optional = false)
+	@JoinColumn(name="user_id" , referencedColumnName="user_id")
+	private Users users;
+	
+	@ManyToOne(optional = false)
+	@JoinColumn(name="product_id" , referencedColumnName="product_id")
+	private Product product;
+
 	public int getWishlist_id() {
 		return wishlist_id;
 	}
+
 	public void setWishlist_id(int wishlist_id) {
 		this.wishlist_id = wishlist_id;
 	}
-	public String getUsername() {
-		return username;
+
+	public Users getUsers() {
+		return users;
 	}
-	public void setUsername(String username) {
-		this.username = username;
+
+	public void setUsers(Users users) {
+		this.users = users;
 	}
-	public String getProduct_name() {
-		return product_name;
+
+	public Product getProduct() {
+		return product;
 	}
-	public void setProduct_name(String product_name) {
-		this.product_name = product_name;
+
+	public void setProduct(Product product) {
+		this.product = product;
 	}
-	public String getAuthor() {
-		return author;
-	}
-	public void setAuthor(String author) {
-		this.author = author;
-	}
-	public String getDescription() {
-		return description;
-	}
-	public void setDescription(String description) {
-		this.description = description;
-	}
-	
 	
 }

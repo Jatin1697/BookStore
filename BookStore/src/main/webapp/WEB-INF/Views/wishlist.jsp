@@ -32,19 +32,19 @@ h4:after {
 		<div class="product">
 			<div class="row">
 				<div class="col-md-2">
-					<img src='<c:url value='/static/images/product/${product.product_name }.png'></c:url>' width=100px height=100px/>
+					<img src='<c:url value='/static/images/product/${product.getProduct().getProduct_name() }.png'></c:url>' width=100px height=100px/>
 				</div>
 				<div class="col-md-3">
-					<p>${product.product_name }</p>
+					<p>${product.getProduct().getProduct_name() }</p>
 				</div>
 				<div class="col-md-2">
-					<p>${product.author }</p>
+					<p>${product.getProduct().getAuthor() }</p>
 				</div>
 				<div class="col-md-4">
-					<p>${product.description }</p>
+					<p>${product.getProduct().getDescription() }</p>
 				</div>
 				<div class="col-md-1">
-					<a href='<c:url value='remove-wishlist-${product.wishlist_id }'></c:url>'><i class="fa fa-times" aria-hidden="true" style="font-size:20px; color:#e60000"></i></a>
+					<a href='<c:url value='/user/${pageContext.request.userPrincipal.name }/wishlist/remove-wishlist/${product.wishlist_id }'></c:url>'><i class="fa fa-times" aria-hidden="true" style="font-size:20px; color:#e60000"></i></a>
 				</div>
 			</div>
 		</div>

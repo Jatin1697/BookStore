@@ -83,6 +83,7 @@ public class UserAccountController {
     		}
     	}
     	model.addAttribute("username", getPrincipal());
+    	
     	/*model.addAttribute("msg", "Details have been successfully updated");*/
     	return "redirect:/user/{username}/account";
     }

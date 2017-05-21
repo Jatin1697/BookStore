@@ -2,9 +2,7 @@ package com.ecommerce.bookstore.DAOImpl;
 
 import java.util.List;
 
-import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
-import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -41,11 +39,9 @@ public class WishlistDaoImpl implements WishlistDao{
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Wishlist> getWishlistItems(String username) {
+	public List<Wishlist> getWishlistItems(int user_id) {
 		// TODO Auto-generated method stub
-		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Wishlist.class);
-		criteria.add(Restrictions.like("username", username));
-		return (List<Wishlist>) criteria.list();
+		return (List<Wishlist>) sessionFactory.getCurrentSession().createQuery("from Wishlist where user_id = " + user_id).list();
 	}
 
 	@Override

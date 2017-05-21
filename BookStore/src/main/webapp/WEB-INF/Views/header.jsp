@@ -53,8 +53,8 @@
 	          	</c:if>
 	          	<c:if test="${pageContext.request.userPrincipal.name != null }">
 	          	
-	          		<c:set var="cart_url" value="/cart?username=${pageContext.request.userPrincipal.name}"></c:set>
-	          		<c:set var="wishlist_url" value="/wishlist?username=${pageContext.request.userPrincipal.name}"></c:set>
+	          		<c:set var="cart_url" value="/user/${pageContext.request.userPrincipal.name}/cart"></c:set>
+	          		<c:set var="wishlist_url" value="/user/${pageContext.request.userPrincipal.name}/wishlist"></c:set>
 	          		<c:set var="cart_size" value="${cartSize }"></c:set>
 	          		<c:set var="wishlist_size" value="${wishlistSize }"></c:set>
 	          	</c:if>
@@ -109,8 +109,9 @@
 	       <li class="${Contactus } dropdown"><a class="dropbtn" href='<c:url value='/home'></c:url>'>Welcome : ${pageContext.request.userPrincipal.name} <span class="caret"></span></a>
 	       	<ul class="dropdown-menu" style="width:150px">
 	       		<li><a href='<c:url value='/user/${pageContext.request.userPrincipal.name}/account'></c:url>'>your account</a></li>
-	       		<li><a href='<c:url value='/orders?username=${pageContext.request.userPrincipal.name}'></c:url>'>your orders</a></li>
-	       		<li><a href='<c:url value='/cart?username=${pageContext.request.userPrincipal.name}'></c:url>'>your cart</a></li>
+	       		<li><a href='<c:url value='/user/${pageContext.request.userPrincipal.name}/order'></c:url>'>your orders</a></li>
+	       		<li><a href='<c:url value='/user/${pageContext.request.userPrincipal.name}/cart'></c:url>'>your cart</a></li>
+	       		<li><a href='<c:url value='/user/${pageContext.request.userPrincipal.name}/wishlist'></c:url>'>your wishlist</a></li>
 	       	</ul>
 	       </li>
 	       <li><a href='<c:url value='/home'></c:url>' style="padding-bottom: 13px; padding-top: 13px"><img src='<c:url value='/static/images/user/${pageContext.request.userPrincipal.name}.png'></c:url>' height='25' width='25' class="img img-rounded"/></a></li>
