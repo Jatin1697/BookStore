@@ -85,9 +85,6 @@
 			</c:forEach>
 		</div>
 		<div class="row">
-			<h3>Best Sellers</h3>
-		</div>
-		<div class="row">
 			<h3>Latest Books</h3>
 		</div>
 		<div class="row">
